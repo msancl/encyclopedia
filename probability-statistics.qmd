@@ -1,0 +1,5 @@
+---
+title: "Probability and Statistics"
+---
+
+This section develops the probability and statistical foundations ue throughout the encyclopedia.

@@ -1,0 +1,29 @@
+project:
+  type: book
+
+book:
+  title: "Encyclopedia of the Actuary"
+  author: "Mateo Sanclemente Tellez"
+  chapters:
+    - index.qmd
+    - toolbox.qmd
+    - probability-statistics.qmd
+    - references.qmd
+  sidebar:
+    search: true
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+
+  typst:
+    toc: true
+    number-sections: true
+
+
+
+
