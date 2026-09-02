@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Encyclopedia of the Actuary",
+    "section": "",
+    "text": "Preface\nHello!",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "toolbox.html",
+    "href": "toolbox.html",
+    "title": "1  Mathematics and Programming Toolbox",
+    "section": "",
+    "text": "Hi",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Mathematics and Programming Toolbox</span>"
+    ]
+  },
+  {
+    "objectID": "probability-statistics.html",
+    "href": "probability-statistics.html",
+    "title": "2  Probability and statistics",
+    "section": "",
+    "text": "2.1 Probability\nThis chapter is primarily based on Wackerly et al. (2008).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Probability and statistics</span>"
+    ]
+  },
+  {
+    "objectID": "probability-statistics.html#probability",
+    "href": "probability-statistics.html#probability",
+    "title": "2  Probability and statistics",
+    "section": "",
+    "text": "2.1.1 Foundations\nAn experiment is the process by which an observation is made.\nWhen an experiment is performed, it can result in one or more outcomes, which are called events.\nA simple event is an event that cannot be decomposed. Because sets are collection of points, we associate a distinct point, called a sample point, with each and every simple event associated with an experiment.\nThe letter \\(E\\) with a subscript will be used to denote a simple event or the corresponding sample point.\nThe sample space associated with an experiment is the set consisting of all possible sample points. A sample space will be denoted by \\(S\\).\nA discrete sample space is one that contains either a finite or a countable number of distinct sample points.\nAn event in a discrete sample space \\(S\\) is a collection of sample points—that is, any subset of \\(S\\).\nSuppose \\(S\\) is a sample space associated with an experiment. To every event \\(A\\) in \\(S\\) (\\(A\\) is a subset of \\(S\\)), we assign a number, \\(P(A)\\), called the probability of \\(A\\), so that the following axioms hold:\n\nAxiom 1: \\(P(A) \\geq 0\\).\nAxiom 2: \\(P(S)=1\\).\nAxiom 3: If \\(A_1, A_2, A_3, \\dots\\) form a sequence of pairwise mutually exclusive events in \\(S\\) (that is, \\(A_i \\cap A_j = \\emptyset\\) if \\(i \\neq j\\)), then\n\\[ P(A_1 \\cup A_2 \\cup A_3 \\cup \\dots) = \\sum_{i=1}^{\\infty} P(A_i).  \\]\n\nWe can easily show that Axiom 3, which is stated in terms of an infinite sequence of events, implies a similar property for a finite sequence.\nSpecifically, if \\(A_1, A_2, \\dots, A_n\\) are pairwise mutually exclusive events, then \\[ P(A_1 \\cup A_2 \\cup A_3 \\cup \\cdots \\cup A_n) = \\sum_{i=1}^{n} P(A_i). \\]\nIf \\(A\\) is an event, then \\[ P(A) = 1-P(\\overline{A}). \\]\n\n\n2.1.2 Useful results from the theory of combinatorial analysis\nWith \\(m\\) elements \\(a_1, a_2, \\dots, a_m\\) and \\(n\\) elements \\(b_1, b_2, \\dots, b_n\\), it is possible to form \\(mn = m \\times n\\) pairs containing one element from each group.\n\n\n\n\n\nThe \\(mn\\) rule can be extended to any number of sets. Given three sets of elements—\\(a_1, a_2, \\dots, a_m;\nb_1, b_2, \\dots, b_n;\\) and \\(c_1, c_2, \\dots, c_p\\)—the number of distinct triplets containing one element from each set is equal to \\(mnp\\).\nAn ordered arrangement of \\(r\\) distinct objects is called a permutation. The number of ways of ordering \\(n\\) distinct objects taken \\(r\\) at time will be designated by the symbol \\(P^n_r\\). In a permutation, the order matters: arranging the same objects in a different order gives a different permutation.\n\\[ P_r^n = n (n-1) (n-2) \\cdots (n-r+1) = \\frac{n!}{(n-r)!}. \\]\nThe number of ways of partitioning \\(n\\) distinct objects into \\(k\\) distinct groups containing \\(n_1, n_2, \\dots, n_k\\) objects, respectively, where each object appears in exactly one group and \\(\\sum_{i=1}^k n_i = n\\), is\n\\[ N = \\binom{n}{n_1\\; n_2\\; \\cdots\\; n_k} = \\frac{n!}{n_1! n_2! \\cdots n_k!}. \\]\nThe terms \\(\\binom{n}{n_1\\; n_2\\; \\cdots\\; n_k}\\) are often called multinomial coefficients because they occur in the expansion of the multinomial term \\(y_1 + y_2 + \\cdots + y_k\\) raised to the \\(n\\)th power:\n\\[ (y_1 + y_2 + \\cdots + y_k)^n = \\sum \\binom{n}{n_1\\; n_2\\; \\cdots\\; n_k} y_1^{n_1} y_2^{n_2} \\cdots y_k^{n_k}, \\]\nwhere this sum is taken over all \\(n_i = 0, 1, \\dots, n\\) such that \\(n_1, n_2 + \\cdots + n_k = n\\).\n\n\nAdditional explanation\n\nThis sum literally means: go through every possible combination of exponents \\(n_1, n_2, \\cdots, n_k\\) that add up to \\(n\\), and create one term for each combination.\nFor example, consider\n\\[\n(y_1+y_2+y_3)^3.\n\\]\nThe possible exponent combinations \\((n_1,n_2,n_3)\\) must satisfy\n\\[\nn_1+n_2+n_3=3.\n\\]\nSo the summation runs over\n\\[\n(3,0,0),\\ (0,3,0),\\ (0,0,3),\n\\]\n\\[\n(2,1,0),\\ (2,0,1),\\ (1,2,0),\\ (0,2,1),\\ (1,0,2),\\ (0,1,2),\n\\]\nand\n\\[\n(1,1,1).\n\\]\nTherefore,\n\\[\n(y_1+y_2+y_3)^3\n=\n\\sum_{\\substack{n_1+n_2+n_3=3 \\\\ n_1,n_2,n_3\\ge 0}}\n\\binom{3}{n_1\\;n_2\\;n_3}\ny_1^{n_1}y_2^{n_2}y_3^{n_3}.\n\\]\nExpanding term by term gives\n\\[\n\\begin{aligned}\n(y_1+y_2+y_3)^3\n={}& y_1^3+y_2^3+y_3^3\n+3y_1^2y_2+3y_1^2y_3+3y_1y_2^2 \\\\\n&+3y_2^2y_3+3y_1y_3^2+3y_2y_3^2\n+6y_1y_2y_3.\n\\end{aligned}\n\\]\n\nThe number of combinations of \\(n\\) objects taken \\(r\\) at a time is the number of subsets, each of size \\(r\\), that can be formed from the \\(n\\) objects. This number will be denoted by \\(C_r^n\\) or \\(\\binom{n}{r}\\).\n\\[ C_r^n =\\binom{n}{r} = \\frac{n!}{r!(n-r)!}.  \\]\n\n\n2.1.3 Conditional probability\nThe conditional probability of an event \\(A\\), given that an event \\(B\\) has occurred, is equal to \\[ P(A|B) = \\frac{P(A \\cap B)}{P(B)}, \\]\nprovided \\(P(B)&gt;0\\).\nTwo events \\(A\\) and \\(B\\) are said to be independent if any one of the following holds:\n\\[\n\\begin{aligned}\n&P(A|B) = P(A), \\\\\n&P(B|A) = P(B), \\\\\n&P(A \\cap B) = P(A)P(B).\n\\end{aligned}\n\\]\nOtherwise, the events are said to be dependent.\nThe probability of the union of two events \\(A\\) and \\(B\\) is\n\\[ P(A \\cup B) = P(A) + P(B) - P(A \\cap B). \\]\nIf \\(A\\) and \\(B\\) are mutually exclusive events, \\(P(A \\cap B) = 0\\).\n\n\n\n\nWackerly, Dennis D., William Mendenhall, and Richard L. Scheaffer. 2008. Mathematical Statistics with Applications. 7th ed. Thomson Brooks/Cole.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Probability and statistics</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Wackerly, Dennis D., William Mendenhall, and Richard L. Scheaffer. 2008.\nMathematical Statistics with Applications. 7th ed. Thomson\nBrooks/Cole.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
