@@ -7,7 +7,7 @@ book:
   chapters:
     - index.qmd
     - toolbox.qmd
-    - probability-statistics.qmd
+    - probability-statistics/probability-statistics.qmd
     - references.qmd
   sidebar:
     search: true

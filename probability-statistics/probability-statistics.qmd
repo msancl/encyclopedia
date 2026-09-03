@@ -1,0 +1,15 @@
+---
+title: "Probability and statistics"
+---
+This chapter is primarily based on @wackerly2008.
+
+<!-- preview-trigger: 1788469755643 -->
+
+## Probability
+
+{{< include _01-prob.qmd >}}
+
+## Random variables
+
+{{< include _02-rv.qmd >}}
+

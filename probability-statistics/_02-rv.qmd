@@ -1,0 +1,83 @@
+A **random variable** is a function that assigns a real number to each possible outcome of a random experiment.
+
+Mathematically, if $S$ is the sample space, then a random variable $Y$ is a function
+
+$$
+Y : S \to \mathbb{R}.
+$$
+
+Thus, for every sample point $s \in S$, the random variable assigns a value
+
+$$
+Y(s) \in \mathbb{R}.
+$$
+
+### Discrete random variables
+
+A random variable $Y$ is said to be **discrete** if it can assume only a finite or
+countably infinite number of distinct values.
+
+Notionally, we will use an *uppercase letter*, such as $Y$, to denote a *random variable*
+and a *lowercase letter*, such as $y$, to denote a *particular value* that
+a random variable may assume.
+
+The expression $(Y=y)$ can be read, *the set of all points in $S$ assigned the value $y$
+by the random variable $Y$*.
+
+The probability that $Y$ takes on the value $y, P(Y=y)$, is defined as the sum of the
+probabilities of all sample points in $S$ that are assigned the value $y$.
+We will sometimes denote $P(Y=y)$ by $p(y)$, which is called the **probability function** for
+$Y$.
+
+The **probability distribution** for a discrete variable $Y$ can be represented by a
+formula, a table, or a graph that provides $p(y)=P(Y=y)$ for all $y$.
+
+For any discrete probability distribution, the following must be true:
+
+1. $0 \leq p(y) \leq 1$ for all $y$.
+2. $\sum_y p(y)=1$, where the summation is over all values of $y$ with nonzero probability.
+
+The **expected value** of $Y$, $E(Y)$, is defined to be 
+
+$$ E(Y) = \sum_y y p(y). $$
+
+Let $g(Y)$ be a real-valued function of $Y$. Then the expected value of $g(Y)$ is given by
+
+$$ E[g(y)] = \sum_y g(y) p(y). $$
+
+If $Y$ is a r.v. with mean $E(Y)=\mu$, the **variance** of $Y$ is defined to be the expected value
+of $(Y-\mu)^2$. That is,
+
+$$ V(Y) = E[(Y-\mu)^2] = E(Y^2) - \mu^2. $$
+
+The **standard deviation** of $Y$ is the positive square root of $V(Y)$.
+
+If $p(y)$ is an accurate characterization of the population frequency distribution, then $E(Y) = \mu$,
+$V(Y) = \sigma^2$, the *population variance*, and $\sigma$ is the *population standard deviation*.
+
+If $c$ is a constant, then 
+
+$$
+\begin{aligned}
+&E[c] = c, \\ 
+&E[cg(Y)] = cE[g(Y)].
+\end{aligned}
+$$
+
+Let $g_1(Y), g_2(Y), \dots, g_k(Y)$ be $k$ functions of $Y$. Then,
+
+$$ E[g_1(Y) + g_2(Y) + \cdots + g_k(Y)] = E[g_1(Y)] + E[g_2(Y)] + \cdots + E[g_k(Y)]. $$
+
+#### The Binomial probability distribution
+
+A **binomial experiment** possesses the following properties:
+
+1. The experiment consists of a fixed number, $n$, of identical trials.
+2. Each trial results in one of two outcomes: success, $S$ or failure, $F$.
+3. The probability of success on a single trial is equal to some value $p$ and
+remains the same from trial to trial. The probability of a failure is equal to 
+$q=(1-p)$.
+4. The trials are independent.
+5. The random variable of interest is $Y$, the number of successes observed during the $n$ trials.
+
+
