@@ -68,6 +68,86 @@ Let $g_1(Y), g_2(Y), \dots, g_k(Y)$ be $k$ functions of $Y$. Then,
 
 $$ E[g_1(Y) + g_2(Y) + \cdots + g_k(Y)] = E[g_1(Y)] + E[g_2(Y)] + \cdots + E[g_k(Y)]. $$
 
+<details class="frame">
+<summary>Some exercises</summary>
+
+1. Wackerly 3.19 — An insurance company issues a one-year $1000 policy insuring against an occurrence
+$A$ that historically happens to 2 out of every 100 owners of the policy. Administrative fees
+are $15 per policy and are not part of the company's profit. How much should the company charge
+for the policy if it requires that the expected profit per policy be $50 ?
+
+    Answer: If $C$ is the premium for the policy, the company's profit is $C-15$ if $A$ does not occur
+    and $C-15-1000$ if $A$ does occur.
+
+    $$ E[\text{Profit}] = 0.98(C-15) + 0.02(C-15-1000). $$
+
+    $$ 0.98 (C-15) + 0.02 (C-15-1000) = 50 \Leftrightarrow C = 85.$$
+
+
+
+2. Wackerly 3.29 — If $Y$ is a discrete random variable that assigns positive probabilities to only the positive
+integers, show that
+$$ E(Y) = \sum_{k=1}^{\infty} P(Y\geq k) = \sum_{y=1}^{\infty} y p(y). $$
+
+    Answer: Notice that for a positive integer $y$,
+
+    $$ y = \sum_{k=1}^y 1. $$
+
+    Thus, $$ E(Y) = \sum_{y=1}^{\infty} \left(\sum_{k=1}^y 1\right) P(Y=y). $$
+
+    So
+    $$ E(Y) = \sum_{y=1}^{\infty} \sum_{k=1}^y P(Y=y). $$
+
+    Now we reverse the order of summation. For a fixed $k$, the possible $y$'s are $y= k, k+1, k+2, \dots$ because $k \leq y$.
+
+    Hence,
+
+    $$ E(Y) = \sum_{k=1}^{\infty} \sum_{y=k}^{\infty} P(Y=y).  $$ 
+
+    But,
+
+    $$ \sum_{y=k}^{\infty} P(Y=y) = P(Y \geq k). $$
+
+    Therefore,
+
+    $$ E(Y) = \sum_{k=1}^{\infty} P(Y\geq k). $$
+
+3. Wackerly 3.33 — Let $Y$ be a discrete random variable with mean $\mu$ and variance $\sigma^2$. If $a$ and $b$ are constants, prove that
+
+    **3.1** $E(aY+b) = aE(Y) + b = a\mu + b$.
+
+    Answer: Starting from the definition of expectation of a function of a discrete random variable:
+
+    $$ E[g(Y)] = \sum_y g(y) p(y). $$
+
+    Here, $g(Y) = aY+b$. Therefore,
+
+    \begin{aligned}
+    E(aY + b) &= \sum_y (ay+b) p(y) \\ &= \sum_y ay p(y) + \sum_y b p(y)  \\ &= a \sum_y y p(y) + b \sum_y p(y).
+    \end{aligned}
+    Now, $\sum_y y p(y) = E(Y) = \mu,$ and because the probabilities of all possible values of $Y$ sum to 1, $\sum_y p(y) = 1$.
+
+    Therefore, 
+
+    $$ E(aY+b) = a \mu + b. $$
+
+
+    **3.2** $V(aY + b) = a^2 V(Y) = a^2 \sigma^2$.
+
+    Answer: Recall the definition of variance: $V(X) = E[(X-E(X))^2]$.
+
+    Let $X=aY+b$. We already know that $E(X) = a\mu + b$.
+
+    Therefore,
+
+    \begin{aligned}
+    V(aY+b) &= E[((aY+b)-(a\mu+b))^2] \\ &= E[(a(Y-\mu))^2] \\ &= E[a^2 (Y-\mu)^2] \\ &= a^2 E[(Y-\mu)^2] \\ &= a^2 \sigma^2.
+    \end{aligned}
+
+
+</details>
+
+
 #### The Binomial probability distribution
 
 A **binomial experiment** possesses the following properties:
@@ -80,4 +160,107 @@ $q=(1-p)$.
 4. The trials are independent.
 5. The random variable of interest is $Y$, the number of successes observed during the $n$ trials.
 
+A random variable $Y$ is said to have a binomial distribution based on $n$ trials
+with success probability $p$ if and only if
+
+$$ p(y) = \binom{n}{y} p^y q^{n-y}, \quad y=0,1,2,\dots, n \text{ and } 0\leq p\leq 1. $$
+
+<details class="frame">
+<summary>Proof</summary>
+
+Each sample point in the sample space can be characterized by an $n$-tuple involving the letters $S$
+and $F$, corresponding to success and failure.
+
+A typical sample point would thus appear as 
+
+$$ \underbrace{SSFSFFFSFS\cdots FS}_{n\text{ positions}}, $$
+
+where the letter in the $i$th position indicates the outcome of the $i$th trial.
+
+Let's now consider a particular sample point corresponding to $y$ successes and hence contained
+in the numerical event $Y=y$. This sample point,
+
+$$ \underbrace{SSSSS \cdots SSS}_{y} \underbrace{FFF \cdots FF}_{n-y}, $$
+
+represents the intersection of $n$ independent events (the outcomes of the $n$ trials),
+in which there were $y$ successes followed by $(n-y)$ failures.
+
+Because the trials were independent and the probability of $S$, $p$, stays the same from
+trial to trial, the probability of this sample point is
+
+$$ \underbrace{ppppp \cdots ppp}_{y\text( terms )} \underbrace{qqq \cdots qq}_{n-y \text( terms )} = p^y q^{n-y} $$
+
+Every other sample point in the event $Y=y$ can be represented as an $n$-tuple containing
+$y$ $S$'s and $(n-y) F$'s in some order. Any such sample point also has probability $p^y q^{n-y}$.
+
+Because the number of distinct $n$-tuples that contain $y$ $S$'s and $(n-y)$ $F$'s is
+
+$$ \binom{n}{y} =  \frac{n!}{y!(n-y)!}, $$
+
+it follows that event $(Y=y)$ is made up of $\binom{n}{y}$ sample points, each with
+probability $p^y q^{n-y}$, and that $p(y) = \binom{n}{y} p^y q^{n-y}, \quad y=0,1,2,\dots, n$.
+
+</details>
+
+The term *binomial experiment* derives from the fact each trial results in one of two
+possible outcomes and that the probabilities $p(y), y = 0, 1, 2, \dots, n$, are terms
+of the **binomial expansion**:
+
+$$ (q+p)^n = \binom{n}{0} q^n + \binom{n}{1} p^1 q^{n-1} + \binom{n}{2} p^2 q^{n-2} + \cdots + \binom{n}{n} p^n. $$
+
+<details class="frame">
+<summary>Example</summary>
+
+For example,
+
+$$
+(q+p)^4
+=
+\binom{4}{0}q^4
++
+\binom{4}{1}pq^3
++
+\binom{4}{2}p^2q^2
++
+\binom{4}{3}p^3q
++
+\binom{4}{4}p^4.
+$$
+
+Since
+
+$$
+\binom{4}{0}=1,\qquad
+\binom{4}{1}=4,\qquad
+\binom{4}{2}=6,\qquad
+\binom{4}{3}=4,\qquad
+\binom{4}{4}=1,
+$$
+
+we obtain
+
+$$
+(q+p)^4
+=
+q^4
++
+4pq^3
++
+6p^2q^2
++
+4p^3q
++
+p^4.
+$$
+
+</details>
+
+Binomial probabilities can also be found using R. If $Y$ has a binomial distribution
+based on $n$ trials with success probability $p$, $P(Y=y_0) = p(y_0)$ can be found
+using the command `dbinom(y0, n, p)`, whereas $P(Y\leq y_0)$ is found by using the command
+`pbinom(y_0, n, p)`.
+
+Let $Y$ be a binomial random variable based on $n$ trials and success probability $p$. Then
+
+$$ \mu = E(Y) = np \quad \text{ and } \quad \sigma^2 = V(Y) = npq. $$
 

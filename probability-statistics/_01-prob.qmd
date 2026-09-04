@@ -139,7 +139,7 @@ The number of **combinations** of $n$ objects taken $r$ at a time
 is the number of subsets, each of size $r$, that can be formed from
 the $n$ objects. This number will be denoted by $C_r^n$ or $\binom{n}{r}$.
 
-$$ C_r^n =\binom{n}{r} = \frac{n!}{r!(n-r)!}.  $$
+$$ C_r^n =\binom{n}{r} = \binom{n}{r \; n-r} = \frac{n!}{r!(n-r)!}.  $$
 
 Let $N$ and $n$ represent the numbers of elements in the population and sample, respectively.
 If the sampling is conducted in such a way that each of the $\binom{N}{n}$ samples
