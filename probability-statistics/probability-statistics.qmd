@@ -3,7 +3,7 @@ title: "Probability and statistics"
 ---
 This chapter is primarily based on @wackerly2008.
 
-<!-- preview-trigger: 1788530880280 -->
+<!-- preview-trigger: 1789676304460 -->
 
 ## Probability
 

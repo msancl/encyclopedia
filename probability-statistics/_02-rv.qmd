@@ -114,7 +114,7 @@ $$ E(Y) = \sum_{k=1}^{\infty} P(Y\geq k) = \sum_{y=1}^{\infty} y p(y). $$
 
 3. Wackerly 3.33 — Let $Y$ be a discrete random variable with mean $\mu$ and variance $\sigma^2$. If $a$ and $b$ are constants, prove that
 
-    **3.1** $E(aY+b) = aE(Y) + b = a\mu + b$.
+    **1** $E(aY+b) = aE(Y) + b = a\mu + b$.
 
     Answer: Starting from the definition of expectation of a function of a discrete random variable:
 
@@ -132,7 +132,7 @@ $$ E(Y) = \sum_{k=1}^{\infty} P(Y\geq k) = \sum_{y=1}^{\infty} y p(y). $$
     $$ E(aY+b) = a \mu + b. $$
 
 
-    **3.2** $V(aY + b) = a^2 V(Y) = a^2 \sigma^2$.
+    **2** $V(aY + b) = a^2 V(Y) = a^2 \sigma^2$.
 
     Answer: Recall the definition of variance: $V(X) = E[(X-E(X))^2]$.
 
@@ -263,4 +263,183 @@ using the command `dbinom(y0, n, p)`, whereas $P(Y\leq y_0)$ is found by using t
 Let $Y$ be a binomial random variable based on $n$ trials and success probability $p$. Then
 
 $$ \mu = E(Y) = np \quad \text{ and } \quad \sigma^2 = V(Y) = npq. $$
+
+<details class="frame">
+<summary>Some exercises</summary>
+
+1. Wackerly 3.35 — Suppose that there are $N=5000$ voters in the population, 40% of whom
+favor Jones. Identify the event *favors Jones* as a success $S$. It is evident
+that the probability of $S$ on trial 1 is $0.40$. Consider the event $B$ that
+$S$ occurs on the second trial. Then $B$ can occur in two ways: The first
+two trials are both successes *or* the first trial is a failure and the second is a success.
+Show that $P(B)= 0.4.$ What is $P(B |\text{ the first trial is } S)?$ Does this *conditional* probability
+differ markedly from $P(B)$?
+
+    Answer: There are $0.4(5000)=2000$ voters who favor Jones, while 3000 do not.
+    Let $S_1$: first voter favors Jones, and $B=S_2$: second voter favors Jones.
+
+    The second voter can favor Jones in exactly two mutually exclusive ways:
+
+    $$ (S_1 \cap S_2) \quad \text{ or } \quad (\overline{S_1} \cap S_2). $$
+
+    Therefore, $$ P(B) = P(S_1 \cap S_2) + P(\overline{S_1} \cap S_2). $$
+
+    For the first path,
+
+    $$ P(S_1) = \frac{2000}{5000}, $$
+
+    and after selecting a Jones supporter first, 1999 Jones supporters remain
+    among 4999 voters:
+
+    $$ P(S_2 | S_1) = \frac{1999}{4999}. $$
+
+    Hence,
+
+    $$ P(S_1 \cap S_2) = P(S_2 | S_1 ) P(S_1) = \frac{1999}{4999} \frac{2000}{5000}. $$
+
+    For the second path,
+
+    $$ P(\overline{S_1}) = \frac{3000}{5000} \text{ and } P(S_2 | \overline{S_1} ) = \frac{2000}{4999}. $$
+
+    Hence,
+
+    $$ P(\overline{S_1} \cap S_2) = \frac{2000}{4999} \frac{3000}{5000}. $$
+
+    Putting everything together, 
+
+    $$ P(B) = \frac{1999}{4999} \frac{2000}{5000}+ \frac{2000}{4999} \frac{3000}{5000} = 0.4. $$
+
+    So although the first voter is removed, the unconditional probability that the second voter favors Jones
+    is still 0.4.
+
+    Now the exercise asks for $P(B|S_1)$, which we calculated as $\frac{1999}{4999} \approx 0.39988$.
+
+    The difference is only about 0.00012 so it is not markedly different. The important conceptual point
+    is that the trials are not exactly independent, because $P(B|S_1) \neq P(B)$. But because the population
+    is very large relative to one draw, the dependence is negligible. This is why sampling
+    without replacement from a very large population can be treated as approximately binomial.
+
+2. Wackerly 3.36(a) — A meteorologist in Denver recorded $Y$ = the number of days of rain
+during a 30-day period. Does $Y$ have a binomial distribution ? If so, are the values of both
+$n$ and $p$ given?
+
+    Answer: Not necessarily binomial because consecutive days are often related.
+
+3. Wackerly 3.36(b) — A market research firm has hired operators who conduct telephone surveys.
+A computer is used to randomly dial a telephone number, and the operator asks the answering person
+whether she has time to answer some questions. Let $Y = $ the number of calls made until
+the first person replies that she is willing to answer the questions. Is this a binomial
+experiment? Explain.
+
+    Answer: No because the number of trials $n$ must be fixed in advance.
+
+4. Wackerly 3.48 — A missile protection system consists of $n$ radar sets operating independently,
+each with a probability of 0.9 of detecting a missile entering a zone that is covered by all of the units.
+
+    1. If $n$ = 5 and a missile enters the zone, what is the probability that exactly four sets detect
+    the missile? At least one set?
+
+    Answer: Let $Y = $number of radar sets that detect the missile. Since the radar sets operate independently
+    and each detects the missile with probability $p=0.9$, we have $Y \sim \operatorname{Bin}(n, 0.9)$.
+
+    For exactly four sets detecting the missile: $$ P(Y=4) = \binom{5}{4} (0.9)^4 (0.1)^1 = 0.32805. $$
+
+    For at least one set detecting the missile, it is easier to use the complement:
+
+    $$ P(Y \geq 1) = 1 - P(Y=0) = 1 - (0.1)^5 = 0.99999. $$
+
+    2. How large must be $n$ if we require that the probability of detecting a missile that enters the zone be 0.999?
+
+    $$ P(Y) \geq 0.999 \Leftrightarrow 1-(0.1)^n \geq 0.999 \Leftrightarrow n \geq 3. $$
+
+    Indeed, $$ P(\text{at least one detection}) = 1-(0.1)^3 = 1-0.001 = 0.999. $$
+
+5. Wackerly 3.58 — A particular sale involves four items randomly selected from a large lot that is known
+to contain 10% defectives. Let $Y$ denote the number of defectives among the four sold. The purchase
+of the items will return the defectives for repair, and the repair cost is given by
+$C = 3Y^2 + Y + 2$. Find the expected repair cost.
+
+    Answer: With $Y \sim \operatorname{Bin}(4, 0.1)$, we want $E(C) = 3Y^2 + Y + 2 =  E(C) = 3E(Y^2) + E(Y) + 2.$
+
+    Since $E(Y) = np = 0.4$, and $E(Y^2) = \sigma^2 + \mu^2 = npq + (np)^2 = 0.52,$
+
+    $$ E(C) = 3 (0.52) + 0.4 + 2 = 3.96\$. $$
+</details>
+
+#### The Geometric probability distribution
+
+The random variable with the geometric probability distribution is associated with an experiment
+involving identical and independent trials, each of which can result in one of two
+outcomes: success or failure. The probability of success is equal to $p$ and is constant
+from trial to trial. However, instead of the number of successes that occur in $n$ trials,
+the geometric r.v. $Y$ is the number of the trial on which the first success occurs.
+
+A random variable $Y$ is said to have a geometric probability distribution if and only if
+
+$$ p(y) = q^{y-1} p, \qquad y=1, 2, 3, \dots, \quad 0 \leq p \leq 1. $$
+
+This distribution is often used to model distributions of lengths of waiting times. For example,
+suppose that a commercial aircraft engine is serviced periodically so that its various parts
+are replaced at different points in time and hence are of varying ages. Then the probability of engine
+malfunction, $p$, during any randomly observed one-hour interval of operation might be the same
+as for any other one-hour interval. (If the entire engine simply aged continuously without maintenance, we might expect
+$P$(failure in next hour) to increase as the engine gets older). The length of time prior to engine malfunction is the number
+of one-hour intervals, $Y$, until the first malfunction.
+
+If $Y$ is a rv with a geometric distribution,
+
+$$ \mu = E(Y) = \frac{1}{p} \quad \text{ and } \quad \sigma^2=V(Y)=\frac{1-p}{p^2}. $$
+
+$P(Y=y_0)=p(y_0)$ can be found using the R command `dgeom(y0-1, p)` whereas $P(Y<=y_0)$
+is found by using the R command `pgeom(y0-1,p)`.
+
+Note that the argument in these commands is the value $y_0-1$, not the value $y_0$, because
+some authors prefer to define the geometric distribution to be that of the random variable
+$Y^*=$ *the number of failures before the first success*.
+
+<details class="frame">
+<summary>Some exercises</summary>
+
+1. Wackerly 3.70 — An oil prospector will drill a succession of holes in a given area
+to find a productive well. The probability that he is successful on a given trial is .2.
+
+    1. What is the probability that the third hole drilled is the first to yield a productive well?
+
+    Answer: $$ p(3) = 0.8^2 0.2 = 0.128. $$
+
+    2. If the prospector can afford to drill at most ten wells, what is the probability that he will
+    fail to find a productive well?
+
+    Answer: $$ 0.8^{10} = 0.1074. $$
+
+2. Wackerly 3.71 — Let $Y$ denote a geometric rv with probability of success $p$.
+Show that for positive integers $a$ and $b$, $$ P(Y>a + b | Y>a) = q^b = P(Y>b). $$
+
+    Answer: $$ P(Y>a+b|Y>a) = \frac{P(Y>a+b)}{P(Y>a)} = \frac{q^{a+b}}{q^a} = q^b. $$
+
+    This result implies that, for example, $P(Y>7|Y>2) = P(Y>5)$. This property is called
+    the **memoryless property** of the geometric distribution. Past failures do not affect the 
+    distribution of the remaining waiting time.
+
+3. Wackerly 3.88 — If $Y$ is a geometric rv, define $Y^* = Y-1$. If $Y$ is interpreted
+as the number of the trial on which the first success occurs, then $Y^*$ can be interpreted
+as the number of failures before the first success. If $Y^* = Y-1, P(Y^*=y) = P(Y-1=y) =
+P(Y=y+1)$ for $y=0, 1, 2, \dots.$ Show that
+$$ P(Y^* = y) = q^y p, \quad y=0, 1, 2, \dots . $$
+
+    Answer: Using the ordinary geometric probability distribution, $P(Y=k)=q^{k-1}p.$
+
+    Here $k=y+1$, so $$ P(Y=y+1) = q^{(y+1)-1}p = q^y p.$$
+
+    Therefore, $$ P(Y^* = y) = q^yp, \quad y=0,1,2,\dots . $$
+
+    The probability distribution of $Y^*$ could sometimes be used by actuaries as a model
+    for the distribution of the number of insurance claims made in a specific time period.
+
+    Suppose $N$= number of insurance claims made by a policyholder during one year.
+    Possible values are naturally $N=0,1,2,3,\dots.$, just like $Y^*$. An actuary could therefore
+    model $N \sim \operatorname{Geom}_0(p).$
+
+</details>
+
 
