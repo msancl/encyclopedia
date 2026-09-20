@@ -178,6 +178,18 @@ window.Quarto = {
    
   <ul>
   <li><a href="#sec-exponential-series" id="toc-sec-exponential-series" class="nav-link active" data-scroll-target="#sec-exponential-series"><span class="header-section-number">1.1</span> Exponential series</a></li>
+  <li><a href="#sec-derivatives" id="toc-sec-derivatives" class="nav-link" data-scroll-target="#sec-derivatives"><span class="header-section-number">1.2</span> Derivatives</a>
+  <ul>
+  <li><a href="#basic-rules" id="toc-basic-rules" class="nav-link" data-scroll-target="#basic-rules"><span class="header-section-number">1.2.1</span> Basic rules</a></li>
+  <li><a href="#product-rule" id="toc-product-rule" class="nav-link" data-scroll-target="#product-rule"><span class="header-section-number">1.2.2</span> Product rule</a></li>
+  <li><a href="#quotient-rule" id="toc-quotient-rule" class="nav-link" data-scroll-target="#quotient-rule"><span class="header-section-number">1.2.3</span> Quotient rule</a></li>
+  <li><a href="#chain-rule" id="toc-chain-rule" class="nav-link" data-scroll-target="#chain-rule"><span class="header-section-number">1.2.4</span> Chain rule</a></li>
+  <li><a href="#powers-of-functions" id="toc-powers-of-functions" class="nav-link" data-scroll-target="#powers-of-functions"><span class="header-section-number">1.2.5</span> Powers of functions</a></li>
+  <li><a href="#exponential-functions" id="toc-exponential-functions" class="nav-link" data-scroll-target="#exponential-functions"><span class="header-section-number">1.2.6</span> Exponential functions</a></li>
+  <li><a href="#logarithms" id="toc-logarithms" class="nav-link" data-scroll-target="#logarithms"><span class="header-section-number">1.2.7</span> Logarithms</a></li>
+  <li><a href="#trigonometric-functions" id="toc-trigonometric-functions" class="nav-link" data-scroll-target="#trigonometric-functions"><span class="header-section-number">1.2.8</span> Trigonometric functions</a></li>
+  <li><a href="#inverse-trigonometric-functions" id="toc-inverse-trigonometric-functions" class="nav-link" data-scroll-target="#inverse-trigonometric-functions"><span class="header-section-number">1.2.9</span> Inverse trigonometric functions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -219,8 +231,273 @@ e^x
 =
 e^\lambda.
 \]</span></p>
+</section>
+<section id="sec-derivatives" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-derivatives"><span class="header-section-number">1.2</span> Derivatives</h2>
+<section id="basic-rules" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="basic-rules"><span class="header-section-number">1.2.1</span> Basic rules</h3>
+<p>For constants <span class="math inline">\(a\)</span>, <span class="math inline">\(c\)</span> and differentiable functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span>,</p>
+<p><span class="math display">\[
+\frac{d}{dx}[c] = 0,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}[x^a] = ax^{a-1},
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}[cf(x)] = cf'(x),
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}[f(x)+g(x)] = f'(x)+g'(x),
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}[f(x)-g(x)] = f'(x)-g'(x).
+\]</span></p>
+</section>
+<section id="product-rule" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="product-rule"><span class="header-section-number">1.2.2</span> Product rule</h3>
+<p><span class="math display">\[
+\frac{d}{dx}[f(x)g(x)]
+=
+f'(x)g(x)+f(x)g'(x).
+\]</span></p>
+</section>
+<section id="quotient-rule" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="quotient-rule"><span class="header-section-number">1.2.3</span> Quotient rule</h3>
+<p><span class="math display">\[
+\frac{d}{dx}
+\left[
+\frac{f(x)}{g(x)}
+\right]
+=
+\frac{
+f'(x)g(x)-f(x)g'(x)
+}{
+[g(x)]^2
+}.
+\]</span></p>
+</section>
+<section id="chain-rule" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="chain-rule"><span class="header-section-number">1.2.4</span> Chain rule</h3>
+<p>If</p>
+<p><span class="math display">\[
+y=f(g(x)),
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+\frac{dy}{dx}
+=
+f'(g(x))g'(x).
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\frac{d}{dx}f(g(x))
+=
+f'(g(x))g'(x).
+\]</span></p>
+<p>This is the rule used whenever a function appears <strong>inside another function</strong>.</p>
+<details class="frame">
+<summary>
+Example
+</summary>
+<p>Consider</p>
+<p><span class="math display">\[
+y=(3x+2)^5.
+\]</span></p>
+<p>This is a composition of two functions:</p>
+<p><span class="math display">\[
+f(x)=3x+2
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+g(u)=u^5.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+y=g(f(x)).
+\]</span></p>
+<p>Using the chain rule,</p>
+<p><span class="math display">\[
+\frac{dy}{dx}
+=
+g'(f(x))f'(x).
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+g'(u)=5u^4
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+f'(x)=3,
+\]</span></p>
+<p>we obtain</p>
+<span class="math display">\[
+\frac{dy}{dx}
+=
+5(3x+2)^4 \cdot 3
+=
+15(3x+2)^4.
+\]</span>
+</details>
+</section>
+<section id="powers-of-functions" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="powers-of-functions"><span class="header-section-number">1.2.5</span> Powers of functions</h3>
+<p><span class="math display">\[
+\frac{d}{dx}[f(x)]^a
+=
+a[f(x)]^{a-1}f'(x).
+\]</span></p>
+<p>In particular,</p>
+<p><span class="math display">\[
+\frac{d}{dx}\sqrt{f(x)}
+=
+\frac{f'(x)}{2\sqrt{f(x)}}.
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{d}{dx}\frac{1}{f(x)}
+=
+-\frac{f'(x)}{[f(x)]^2}.
+\]</span></p>
+</section>
+<section id="exponential-functions" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="exponential-functions"><span class="header-section-number">1.2.6</span> Exponential functions</h3>
+<p><span class="math display">\[
+\frac{d}{dx}e^x=e^x.
+\]</span></p>
+<p>More generally,</p>
+<p><span class="math display">\[
+\boxed{
+\frac{d}{dx}e^{f(x)}
+=
+e^{f(x)}f'(x)
+}
+\]</span></p>
+<p>by the chain rule.</p>
+<p>For a constant <span class="math inline">\(a&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\frac{d}{dx}a^x
+=
+a^x\ln(a),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{d}{dx}a^{f(x)}
+=
+a^{f(x)}\ln(a)\,f'(x).
+\]</span></p>
+</section>
+<section id="logarithms" class="level3" data-number="1.2.7">
+<h3 data-number="1.2.7" class="anchored" data-anchor-id="logarithms"><span class="header-section-number">1.2.7</span> Logarithms</h3>
+<p><span class="math display">\[
+\frac{d}{dx}\ln x
+=
+\frac{1}{x}.
+\]</span></p>
+<p>More generally,</p>
+<p><span class="math display">\[
+\boxed{
+\frac{d}{dx}\ln[f(x)]
+=
+\frac{f'(x)}{f(x)}
+}
+\]</span></p>
+<p>provided <span class="math inline">\(f(x)&gt;0\)</span>.</p>
+<p>For logarithms with base <span class="math inline">\(a\)</span>,</p>
+<p><span class="math display">\[
+\frac{d}{dx}\log_a x
+=
+\frac{1}{x\ln(a)},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{d}{dx}\log_a[f(x)]
+=
+\frac{f'(x)}{f(x)\ln(a)}.
+\]</span></p>
+</section>
+<section id="trigonometric-functions" class="level3" data-number="1.2.8">
+<h3 data-number="1.2.8" class="anchored" data-anchor-id="trigonometric-functions"><span class="header-section-number">1.2.8</span> Trigonometric functions</h3>
+<p><span class="math display">\[
+\frac{d}{dx}\sin x=\cos x,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\cos x=-\sin x,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\tan x=\sec^2 x.
+\]</span></p>
+<p>With an inner function <span class="math inline">\(f(x)\)</span>,</p>
+<p><span class="math display">\[
+\frac{d}{dx}\sin[f(x)]
+=
+\cos[f(x)]f'(x),
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\cos[f(x)]
+=
+-\sin[f(x)]f'(x),
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\tan[f(x)]
+=
+\sec^2[f(x)]f'(x).
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+\frac{d}{dx}\sec x
+=
+\sec x\tan x,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\csc x
+=
+-\csc x\cot x,
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\cot x
+=
+-\csc^2 x.
+\]</span></p>
+</section>
+<section id="inverse-trigonometric-functions" class="level3" data-number="1.2.9">
+<h3 data-number="1.2.9" class="anchored" data-anchor-id="inverse-trigonometric-functions"><span class="header-section-number">1.2.9</span> Inverse trigonometric functions</h3>
+<p><span class="math display">\[
+\frac{d}{dx}\arcsin x
+=
+\frac{1}{\sqrt{1-x^2}},
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\arccos x
+=
+-\frac{1}{\sqrt{1-x^2}},
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\arctan x
+=
+\frac{1}{1+x^2}.
+\]</span></p>
+<p>With an inner function <span class="math inline">\(f(x)\)</span>,</p>
+<p><span class="math display">\[
+\frac{d}{dx}\arcsin[f(x)]
+=
+\frac{f'(x)}
+{\sqrt{1-[f(x)]^2}},
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\arccos[f(x)]
+=
+-\frac{f'(x)}
+{\sqrt{1-[f(x)]^2}},
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\arctan[f(x)]
+=
+\frac{f'(x)}
+{1+[f(x)]^2}.
+\]</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

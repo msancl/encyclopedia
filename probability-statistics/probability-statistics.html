@@ -240,7 +240,7 @@ window.Quarto = {
 
 
 <p>This chapter is primarily based on <span class="citation" data-cites="wackerly2008">Wackerly et al. (<a href="../references.html#ref-wackerly2008" role="doc-biblioref">2008</a>)</span>.</p>
-<!-- preview-trigger: 1789902407277 -->
+<!-- preview-trigger: 1789921963572 -->
 <section id="probability" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">2.1</span> Probability</h2>
 <section id="foundations" class="level3" data-number="2.1.1">
@@ -1117,6 +1117,25 @@ m^{(k)}(0)=\mu_k'.
 Some exercises
 </summary>
 </details>
+<ol type="1">
+<li><p>Wackerly Example 3.23 — Find the moment-generating function <span class="math inline">\(m(t)\)</span> for a Poisson distributed random variable with mean <span class="math inline">\(\lambda\)</span>.</p>
+<p>Answer: <span class="math display">\[
+\begin{aligned}
+m(t) &amp;= E(e^{tY}) = \sum_{y=0}^{\infty} e^{ty} p(y) = \sum_{y=0}^{\infty} e^{ty} \frac{\lambda^y e^{-\lambda}}{y!} \\
+&amp;= e^{-\lambda} \sum_{y=0}^{\infty} \frac{\left(\lambda e^t\right)^y}{y!}
+\underset{\text{exponential series}}{=}
+e^{-\lambda} e^{\lambda e^t} = e^{\lambda (e^t -1)}
+\end{aligned}
+\]</span> See <a href="../toolbox.html#sec-exponential-series" class="quarto-xref"><span>Section 1.1</span></a>.</p></li>
+<li><p>Wackerly Example 3.24 — Use the MGF to find the mean and variance for the Poisson random variable.</p>
+<p>Answer: <span class="math inline">\(\mu = \mu'_1 = m^{(1)}(0)\)</span> and <span class="math inline">\(\mu = \mu'_2 = m^{(2)}(0)\)</span>.</p>
+<p>Taking the first and second derivatives of <span class="math inline">\(m(t)\)</span>, we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+m^{(1)}(t) = \frac{d}{dt} \left[ e^{\lambda (e^t-1)} \right] =
+\end{aligned}
+\]</span></p></li>
+</ol>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
