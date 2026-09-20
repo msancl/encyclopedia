@@ -233,6 +233,7 @@ window.Quarto = {
 <section id="foundations" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="foundations"><span class="header-section-number">2.1.1</span> Foundations</h3>
 <p>An <strong>experiment</strong> is the process by which an observation is made.</p>
+<p>A statistical experiment involves the observation of a <strong>sample</strong> selected from a larger body of data, existing or conceptual, called a <strong>population</strong>.</p>
 <p>When an experiment is performed, it can result in one or more outcomes, which are called <strong>events</strong>.</p>
 <p>A <strong>simple</strong> event is an event that cannot be decomposed. Because sets are collection of points, we associate a distinct point, called a <strong>sample point</strong>, with each and every simple event associated with an experiment.</p>
 <p>The letter <span class="math inline">\(E\)</span> with a subscript will be used to denote a simple event or the corresponding sample point.</p>
@@ -312,6 +313,7 @@ y_1^{n_1}y_2^{n_2}y_3^{n_3}.
 </details>
 <p>The number of <strong>combinations</strong> of <span class="math inline">\(n\)</span> objects taken <span class="math inline">\(r\)</span> at a time is the number of subsets, each of size <span class="math inline">\(r\)</span>, that can be formed from the <span class="math inline">\(n\)</span> objects. This number will be denoted by <span class="math inline">\(C_r^n\)</span> or <span class="math inline">\(\binom{n}{r}\)</span>.</p>
 <p><span class="math display">\[ C_r^n =\binom{n}{r} = \frac{n!}{r!(n-r)!}.  \]</span></p>
+<p>Let <span class="math inline">\(N\)</span> and <span class="math inline">\(n\)</span> represent the numbers of elements in the population and sample, respectively. If the sampling is conducted in such a way that each of the <span class="math inline">\(\binom{N}{n}\)</span> samples has an equal probability of being selected, the sampling is said to be random, and the result is said to be a <strong>random sample</strong>.</p>
 </section>
 <section id="conditional-probability" class="level3" data-number="2.1.3">
 <h3 data-number="2.1.3" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">2.1.3</span> Conditional probability</h3>
@@ -329,6 +331,17 @@ y_1^{n_1}y_2^{n_2}y_3^{n_3}.
 <p>The probability of the <strong>union</strong> of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is</p>
 <p><span class="math display">\[ P(A \cup B) = P(A) + P(B) - P(A \cap B). \]</span></p>
 <p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive events, <span class="math inline">\(P(A \cap B) = 0\)</span>.</p>
+<p>For some positive integer <span class="math inline">\(k\)</span>, let the sets <span class="math inline">\(B_1, B_2, \dots, B_k\)</span> be such that</p>
+<div style="margin-left: 2em;">
+<ol type="1">
+<li><span class="math inline">\(S= B_1 \cup B_2 \cup \cdots \cup B_k\)</span>.</li>
+<li><span class="math inline">\(B_i \cap B_j = \emptyset\)</span>, for <span class="math inline">\(i \neq j\)</span>.</li>
+</ol>
+</div>
+<p>Then the collection of sets <span class="math inline">\(\{B_1, B_2, \dots, B_k\}\)</span> is said to be a <strong>partition</strong> of <span class="math inline">\(S\)</span>.</p>
+<p>Assume that <span class="math inline">\(\{B_1, B_2, \dots, B_k\}\)</span> is a partition of <span class="math inline">\(S\)</span> such that <span class="math inline">\(P(B_i&gt;0)\)</span> for <span class="math inline">\(i= 1, 2, \dots, k\)</span>. Then for any event <span class="math inline">\(A\)</span></p>
+<p><span class="math display">\[ P(A) = \sum_{i=1}^k P(A|B_i) P(B_i). \]</span></p>
+<p><strong>Bayes’ Rule</strong>: <span class="math display">\[ P(B_j | A) = \frac{P(A \cap B_j)}{P(A)} = \frac{P(A|B_j)P(B_j)}{\sum_{i=1}^k P(A|B_i) P(B_i)}. \]</span></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
