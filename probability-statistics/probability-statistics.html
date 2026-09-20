@@ -240,7 +240,7 @@ window.Quarto = {
 
 
 <p>This chapter is primarily based on <span class="citation" data-cites="wackerly2008">Wackerly et al. (<a href="../references.html#ref-wackerly2008" role="doc-biblioref">2008</a>)</span>.</p>
-<!-- preview-trigger: 1789902144676 -->
+<!-- preview-trigger: 1789902285025 -->
 <section id="probability" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">2.1</span> Probability</h2>
 <section id="foundations" class="level3" data-number="2.1.1">
@@ -544,18 +544,20 @@ Some exercises
 <li><p>Wackerly 3.36(b) — A market research firm has hired operators who conduct telephone surveys. A computer is used to randomly dial a telephone number, and the operator asks the answering person whether she has time to answer some questions. Let $Y = $ the number of calls made until the first person replies that she is willing to answer the questions. Is this a binomial experiment? Explain.</p>
 <p>Answer: No because the number of trials <span class="math inline">\(n\)</span> must be fixed in advance.</p></li>
 <li><p>Wackerly 3.48 — A missile protection system consists of <span class="math inline">\(n\)</span> radar sets operating independently, each with a probability of 0.9 of detecting a missile entering a zone that is covered by all of the units.</p>
-<ol type="1">
-<li>If <span class="math inline">\(n\)</span> = 5 and a missile enters the zone, what is the probability that exactly four sets detect the missile? At least one set?</li>
-</ol>
+<ol type="a">
+<li><p>If <span class="math inline">\(n\)</span> = 5 and a missile enters the zone, what is the probability that exactly four sets detect the missile? At least one set?</p>
 <p>Answer: Let $Y = $number of radar sets that detect the missile. Since the radar sets operate independently and each detects the missile with probability <span class="math inline">\(p=0.9\)</span>, we have <span class="math inline">\(Y \sim \operatorname{Bin}(n, 0.9)\)</span>.</p>
 <p>For exactly four sets detecting the missile: <span class="math display">\[ P(Y=4) = \binom{5}{4} (0.9)^4 (0.1)^1 = 0.32805. \]</span></p>
 <p>For at least one set detecting the missile, it is easier to use the complement:</p>
-<p><span class="math display">\[ P(Y \geq 1) = 1 - P(Y=0) = 1 - (0.1)^5 = 0.99999. \]</span></p>
-<ol start="2" type="1">
-<li>How large must be <span class="math inline">\(n\)</span> if we require that the probability of detecting a missile that enters the zone be 0.999?</li>
+<p><span class="math display">\[ P(Y \geq 1) = 1 - P(Y=0) = 1 - (0.1)^5 = 0.99999. \]</span></p></li>
+<li><p>How large must be <span class="math inline">\(n\)</span> if we require that the probability of detecting a missile that enters the zone be 0.999?</p></li>
 </ol>
-<p><span class="math display">\[ P(Y) \geq 0.999 \Leftrightarrow 1-(0.1)^{\,n} \geq 0.999 \Leftrightarrow n \geq 3. \]</span></p>
-<p>Indeed, <span class="math display">\[ P(\text{at least one detection}) = 1-(0.1)^3 = 1-0.001 = 0.999. \]</span></p></li>
+<p>$$ P(Y) -(0.1)^{n[typst]: Compiling index.typ to index.pdf…error: unknown variable: nthin ┌─ \?:.typ:850:50 │ 850 │ $ P(Y)gt.eq 0.999 arrow.l.r.double 1 -(0.1)^nthin gt.eq 0.999 arrow.l.r.double n gt.eq 3 . $ │ <sup></sup>^ │ = hint: if you meant to display multiple letters as is, try adding spaces between each letter: <code>n t h i n</code> = hint: or if you meant to display this as text, try placing it in quotes: <code>"nthin"</code></p></li>
+</ol>
+<p>ERROR: error: unknown variable: nthin ┌─ \?:.typ:850:50 │ 850 │ $ P(Y)gt.eq 0.999 arrow.l.r.double 1 -(0.1)^nthin gt.eq 0.999 arrow.l.r.double n gt.eq 3 . $ │ <sup></sup>^ │ = hint: if you meant to display multiple letters as is, try adding spaces between each letter: <code>n t h i n</code> = hint: or if you meant to display this as text, try placing it in quotes: <code>"nthin"</code></p>
+<p>ERROR: Typst compilation failed} n . $$</p>
+<pre><code>Indeed, $$ P(\text{at least one detection}) = 1-(0.1)^3 = 1-0.001 = 0.999. $$</code></pre>
+<ol start="5" type="1">
 <li><p>Wackerly 3.58 — A particular sale involves four items randomly selected from a large lot that is known to contain 10% defectives. Let <span class="math inline">\(Y\)</span> denote the number of defectives among the four sold. The purchase of the items will return the defectives for repair, and the repair cost is given by <span class="math inline">\(C = 3Y^2 + Y + 2\)</span>. Find the expected repair cost.</p>
 <p>Answer: With <span class="math inline">\(Y \sim \operatorname{Bin}(4, 0.1)\)</span>, we want <span class="math inline">\(E(C) = 3Y^2 + Y + 2 =  E(C) = 3E(Y^2) + E(Y) + 2.\)</span></p>
 <p>Since <span class="math inline">\(E(Y) = np = 0.4\)</span>, and <span class="math inline">\(E(Y^2) = \sigma^2 + \mu^2 = npq + (np)^2 = 0.52,\)</span></p>
