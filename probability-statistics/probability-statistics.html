@@ -212,7 +212,11 @@ window.Quarto = {
   <li><a href="#the-hypergeometric-probability-distribution" id="toc-the-hypergeometric-probability-distribution" class="nav-link" data-scroll-target="#the-hypergeometric-probability-distribution"><span class="header-section-number">2.2.1.4</span> The Hypergeometric probability distribution</a></li>
   <li><a href="#the-poisson-probability-distribution" id="toc-the-poisson-probability-distribution" class="nav-link" data-scroll-target="#the-poisson-probability-distribution"><span class="header-section-number">2.2.1.5</span> The Poisson probability distribution</a></li>
   <li><a href="#moments-and-moment-generating-functions" id="toc-moments-and-moment-generating-functions" class="nav-link" data-scroll-target="#moments-and-moment-generating-functions"><span class="header-section-number">2.2.1.6</span> Moments and moment-generating functions</a></li>
+  <li><a href="#probability-generating-functions" id="toc-probability-generating-functions" class="nav-link" data-scroll-target="#probability-generating-functions"><span class="header-section-number">2.2.1.7</span> Probability-generating functions</a></li>
+  <li><a href="#tchebysheffs-theorem" id="toc-tchebysheffs-theorem" class="nav-link" data-scroll-target="#tchebysheffs-theorem"><span class="header-section-number">2.2.1.8</span> Tchebysheff’s theorem</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">2.2.1.9</span> Summary</a></li>
   </ul></li>
+  <li><a href="#continuous-variables" id="toc-continuous-variables" class="nav-link" data-scroll-target="#continuous-variables"><span class="header-section-number">2.2.2</span> Continuous variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -240,7 +244,7 @@ window.Quarto = {
 
 
 <p>This chapter is primarily based on <span class="citation" data-cites="wackerly2008">Wackerly et al. (<a href="../references.html#ref-wackerly2008" role="doc-biblioref">2008</a>)</span>.</p>
-<!-- preview-trigger: 1789921963572 -->
+<!-- preview-trigger: 1790942850667 -->
 <section id="probability" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">2.1</span> Probability</h2>
 <section id="foundations" class="level3" data-number="2.1.1">
@@ -1116,7 +1120,6 @@ m^{(k)}(0)=\mu_k'.
 <summary>
 Some exercises
 </summary>
-</details>
 <ol type="1">
 <li><p>Wackerly Example 3.23 — Find the moment-generating function <span class="math inline">\(m(t)\)</span> for a Poisson distributed random variable with mean <span class="math inline">\(\lambda\)</span>.</p>
 <p>Answer: <span class="math display">\[
@@ -1132,10 +1135,1603 @@ e^{-\lambda} e^{\lambda e^t} = e^{\lambda (e^t -1)}
 <p>Taking the first and second derivatives of <span class="math inline">\(m(t)\)</span>, we obtain</p>
 <p><span class="math display">\[
 \begin{aligned}
-m^{(1)}(t) = \frac{d}{dt} \left[ e^{\lambda (e^t-1)} \right] =
+m^{(1)}(t) &amp;= \frac{d}{dt} \left[ e^{\lambda (e^t-1)} \right] = e^{\lambda (e^t-1)} \cdot \lambda e^t, \\
+m^{(2)}(t) &amp;= \frac{d}{dt} \left[e^{\lambda (e^t-1)} \cdot \lambda e^t \right] = e^{\lambda (e^t-1)} \cdot \left( \lambda e^t \right)^2
++ e^{\lambda (e^t-1)} \cdot \lambda e^t.
+\end{aligned}
+\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu
+&amp;= m^{(1)}(0)
+= \left[
+e^{\lambda(e^t-1)} \cdot \lambda e^t
+\right]_{t=0}
+= \lambda, \\[1em]
+\mu_2'
+&amp;= m^{(2)}(0)
+= \left[
+e^{\lambda(e^t-1)} \cdot (\lambda e^t)^2
++
+e^{\lambda(e^t-1)} \cdot \lambda e^t
+\right]_{t=0}
+= \lambda^2+\lambda.
+\end{aligned}
+\]</span></p>
+<p>To find <span class="math inline">\(\sigma^2\)</span>, we simply use the fact that</p>
+<p><span class="math display">\[ \sigma^2 = E(Y^2) - \mu^2 = \mu'_2 - \mu^2 = \lambda^2 + \lambda - (\lambda)^2 = \lambda. \]</span></p></li>
+<li><p>Wackerly Example 3.25 — Suppose that <span class="math inline">\(Y\)</span> is a rv with mgf <span class="math inline">\(m_Y(t) = e^{3.2(e^t -1)}.\)</span> What is the distribution of <span class="math inline">\(Y\)</span>?</p>
+<p>Answer: We showed that the mgf of a Poisson distributed rv with mean <span class="math inline">\(\lambda\)</span> is <span class="math inline">\(m(t)=e^{\lambda(e^t -1)}\)</span>. Because mgfs are unique, <span class="math inline">\(Y\)</span> must have a Poisson distribution with mean 3.2.</p></li>
+<li><p>Wackerly 3.145 — If <span class="math inline">\(Y\)</span> has a binomial distribution with <span class="math inline">\(n\)</span> trials and probability of success <span class="math inline">\(p\)</span>, show that the mgf for <span class="math inline">\(Y\)</span> is</p>
+<p><span class="math display">\[ m(t) = \left(pe^t + q\right)^n, \quad \text{where } q = 1-p. \]</span></p>
+<p>Answer: we start from the definition of the mgf: <span class="math display">\[ m(t) = E(e^{tY}) = \sum_{y=0}^n e^{ty} P(Y=y). \]</span></p>
+<p>For <span class="math inline">\(Y \sim \operatorname{Bin}(n,p)\)</span>,</p>
+<p>the probability distribution function is</p>
+<p><span class="math display">\[ P(Y=y) = \binom{n}{y} p^y q^{n-y}, \qquad q=1-p. \]</span></p>
+<p>We then substitute it inside:</p>
+<p><span class="math display">\[ m(t) = \sum_{y=0}^n e^{ty} \binom{n}{y} p^y q^{n-y}. \]</span></p>
+<p>We can combine <span class="math inline">\(e^{ty}\)</span> and <span class="math inline">\(p^y\)</span>:</p>
+<p><span class="math display">\[ e^{ty}p^y = (e^t)^y p^y = (pe^t)^y. \]</span></p>
+<p>Therefore, <span class="math display">\[ m(t) = \sum_{y=0}^n \binom{n}{y} (pe^t)^y q^{n-y}. \]</span></p>
+<p>This has exactly the form of the binomial theorem:</p>
+<p><span class="math display">\[ (a+b)^n = \sum_{y=0}^n \binom{n}{y} a^y b^{n-y}. \]</span></p>
+<p>If we take <span class="math inline">\(a=pe^t\)</span> and <span class="math inline">\(b=q\)</span>, we have</p>
+<p><span class="math display">\[ m(t) = (pe^t + q)^n. \]</span></p></li>
+<li><p>Wackerly 3.153 — Find the distributions of the random variables that have each of the following mgfs:</p>
+<ol type="a">
+<li><p><span class="math display">\[ m(t) = \left[(1/3)e^t + (2/3)\right]^5. \]</span></p>
+<p>Answer: The idea is to match each mgf with a known mgf form.</p>
+<p>We can identify <span class="math inline">\(p=1/3\)</span>, <span class="math inline">\(q=2/3\)</span> and <span class="math inline">\(n=5\)</span>. Therefore, <span class="math inline">\(Y \sim \operatorname{Bin}(5, 1/3).\)</span></p></li>
+<li><p><span class="math display">\[ m(t) =  \frac{e^t}{2-e^t}. \]</span></p>
+<p>Answer: The geometric mgf is <span class="math display">\[ m(t) = \frac{pe^t}{1-qe^t}. \]</span></p>
+<p>If we divide the numerator and the denominator by 2 in the expression, we get:</p>
+<p><span class="math display">\[ \frac{e^t}{2-e^t} = \frac{\frac{1}{2}e^t}{1-\frac{1}{2}e^t}. \]</span></p>
+<p>Hence, <span class="math inline">\(p=1/2\)</span>, <span class="math inline">\(q=1/2\)</span>, and <span class="math inline">\(Y \sim \operatorname{Geom}(\frac{1}{2})\)</span>, where <span class="math inline">\(Y= 1, 2, 3, \dots\)</span> is the trial on which the first success occurs.</p></li>
+<li><p><span class="math display">\[ m(t) = e^{2(e^t-1)}. \]</span></p>
+<p>Answer: The Poisson mgf is <span class="math display">\[ m(t) = e^{\lambda(e^t -1)}. \]</span></p>
+<p>So <span class="math inline">\(\lambda = 2\)</span> and <span class="math inline">\(Y \sim \operatorname{Pois}(2).\)</span></p></li>
+</ol></li>
+<li><p>Wackerly 3.155 — Let <span class="math inline">\(m(t) = (1/6)e^t + (2/6)e^{2t} + (3/6) e^{3t}\)</span>.</p>
+<ol type="a">
+<li><p>Find <span class="math inline">\(E(Y)\)</span>.</p>
+<p>Answer:</p>
+<p>Differentiate the moment-generating function once:</p>
+<p><span class="math display">\[
+\begin{aligned}
+m'(t)
+&amp;=
+\frac{1}{6}e^t
++
+\frac{2}{6}(2e^{2t})
++
+\frac{3}{6}(3e^{3t}) \\
+&amp;=
+\frac{1}{6}e^t
++
+\frac{4}{6}e^{2t}
++
+\frac{9}{6}e^{3t}.
+\end{aligned}
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+E(Y)=m'(0),
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(Y)
+&amp;=m'(0) \\
+&amp;=
+\frac{1}{6}
++
+\frac{4}{6}
++
+\frac{9}{6} \\
+&amp;=
+\frac{14}{6} \\
+&amp;=
+\frac{7}{3}.
 \end{aligned}
 \]</span></p></li>
+<li><p>Find <span class="math inline">\(V(Y)\)</span>.</p>
+<p>Answer:</p>
+<p>To find the variance, first compute the second derivative:</p>
+<p><span class="math display">\[
+\begin{aligned}
+m''(t)
+&amp;=
+\frac{1}{6}e^t
++
+\frac{8}{6}e^{2t}
++
+\frac{27}{6}e^{3t}.
+\end{aligned}
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+E(Y^2)=m''(0),
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(Y^2)
+&amp;=m''(0) \\
+&amp;=
+\frac{1}{6}
++
+\frac{8}{6}
++
+\frac{27}{6} \\
+&amp;=
+\frac{36}{6} \\
+&amp;=
+6.
+\end{aligned}
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+V(Y)
+=
+E(Y^2)-[E(Y)]^2.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+V(Y)
+&amp;=
+6-\left(\frac{7}{3}\right)^2 \\
+&amp;=
+6-\frac{49}{9} \\
+&amp;=
+\frac{54}{9}-\frac{49}{9} \\
+&amp;=
+\frac{5}{9}.
+\end{aligned}
+\]</span></p></li>
+<li><p>Find the distribution of <span class="math inline">\(Y\)</span>.</p>
+<p>Answer:</p>
+<p>For a discrete random variable,</p>
+<p><span class="math display">\[
+m(t)
+=
+E(e^{tY})
+=
+\sum_y e^{ty}p(y).
+\]</span></p>
+<p>Comparing this with</p>
+<p><span class="math display">\[
+m(t)
+=
+\frac{1}{6}e^t
++
+\frac{2}{6}e^{2t}
++
+\frac{3}{6}e^{3t},
+\]</span></p>
+<p>we can read the probabilities directly:</p>
+<p><span class="math display">\[
+P(Y=1)=\frac{1}{6},
+\]</span></p>
+<p><span class="math display">\[
+P(Y=2)=\frac{2}{6}=\frac{1}{3},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+P(Y=3)=\frac{3}{6}=\frac{1}{2}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+p(y)
+=
+\begin{cases}
+\frac{1}{6}, &amp; y=1,\\
+\frac{1}{3}, &amp; y=2,\\
+\frac{1}{2}, &amp; y=3,\\
+0, &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p>The probabilities sum to</p>
+<p><span class="math display">\[
+\frac{1}{6}+\frac{2}{6}+\frac{3}{6}=1.
+\]</span></p></li>
+</ol></li>
+<li><p>Wackerly 3.158 — If <span class="math inline">\(Y\)</span> is a rv with mgf <span class="math inline">\(m(t)\)</span> and if <span class="math inline">\(W\)</span> is given by <span class="math inline">\(W=aY+b\)</span>, show that the mgf of <span class="math inline">\(W\)</span> is <span class="math inline">\(e^{tb} m(at)\)</span>.</p>
+<p>Answer: Start from the definition of the moment-generating function of <span class="math inline">\(W\)</span>:</p>
+<p><span class="math display">\[
+m_W(t)=E(e^{tW}).
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+W=aY+b,
+\]</span></p>
+<p>we have</p>
+<p><span class="math display">\[
+\begin{aligned}
+m_W(t)
+&amp;=
+E\left(e^{t(aY+b)}\right) \\
+&amp;=
+E\left(e^{taY}e^{tb}\right).
+\end{aligned}
+\]</span></p>
+<p>Because <span class="math inline">\(e^{tb}\)</span> does not depend on the random variable <span class="math inline">\(Y\)</span>, it is constant with respect to the expectation:</p>
+<p><span class="math display">\[
+\begin{aligned}
+m_W(t)
+&amp;=
+e^{tb}E\left(e^{taY}\right).
+\end{aligned}
+\]</span></p>
+<p>Now, since</p>
+<p><span class="math display">\[
+m_Y(t)=E(e^{tY}),
+\]</span></p>
+<p>replacing <span class="math inline">\(t\)</span> by <span class="math inline">\(at\)</span> gives</p>
+<p><span class="math display">\[
+m_Y(at)
+=
+E\left(e^{(at)Y}\right)
+=
+E\left(e^{taY}\right).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+m_W(t)=e^{tb}m_Y(at)
+}
+\]</span></p></li>
+<li><p>Wackerly 3.162 — Let <span class="math inline">\(r(t) = ln[m(t)]\)</span> and <span class="math inline">\(r^{(k)}(0)\)</span> denote the <span class="math inline">\(k\)</span>th derivative of <span class="math inline">\(r(t)\)</span> evaluated for <span class="math inline">\(t=0\)</span>. Show that <span class="math inline">\(r^{(1)}= 0 = \mu'_1 = \mu\)</span> and <span class="math inline">\(r^{(2)}(0) = \mu'_2 - (\mu'_1)^2 = \sigma^2.\)</span></p>
+<p>Answer:</p>
+<p>Since</p>
+<p><span class="math display">\[
+r(t)=\ln[m(t)],
+\]</span></p>
+<p>using</p>
+<p><span class="math display">\[
+\frac{d}{dt}\ln[f(t)]
+=
+\frac{f'(t)}{f(t)},
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+r'(t)
+=
+\frac{m'(t)}{m(t)}.
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+m(0)
+=
+E(e^{0Y})
+=
+E(1)
+=
+1.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+r'(0)
+&amp;=
+\frac{m'(0)}{m(0)} \\
+&amp;=
+\frac{\mu_1'}{1} \\
+&amp;=
+\mu_1' \\
+&amp;=
+\mu.
+\end{aligned}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+r'(0)=\mu.
+}
+\]</span></p>
+<p>For the second derivative we now differentiate</p>
+<p><span class="math display">\[
+r'(t)=\frac{m'(t)}{m(t)}
+\]</span></p>
+<p>using the quotient rule:</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\left[
+\frac{f(t)}{g(t)}
+\right]
+=
+\frac{
+f'(t)g(t)-f(t)g'(t)
+}{
+[g(t)]^2
+}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+r''(t)
+=
+\frac{
+m''(t)m(t)-[m'(t)]^2
+}{
+[m(t)]^2
+}.
+\]</span></p>
+<p>Evaluating at <span class="math inline">\(t=0\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+r''(0)
+&amp;=
+\frac{
+m''(0)m(0)-[m'(0)]^2
+}{
+[m(0)]^2
+} \\
+&amp;=
+\frac{
+\mu_2'(1)-(\mu_1')^2
+}{
+1^2
+} \\
+&amp;=
+\mu_2'-(\mu_1')^2.
+\end{aligned}
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+\mu_2'=E(Y^2)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\mu_1'=E(Y)=\mu,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+r''(0)
+&amp;=
+E(Y^2)-[E(Y)]^2 \\
+&amp;=
+V(Y) \\
+&amp;=
+\sigma^2.
+\end{aligned}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+r''(0)=\sigma^2.
+}
+\]</span></p></li>
+<li><p>Wackerly 3.163 — Find the mean and variance of a Poisson rv with <span class="math inline">\(m(t) = e^{5(e^t-1)}\)</span> using the results of the previous exercise.</p>
+<p>Answer: Using the result from the previous exercise,</p>
+<p><span class="math display">\[
+r(t)=\ln[m(t)],
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+r'(0)=\mu
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+r''(0)=\sigma^2.
+\]</span></p>
+<p>Here,</p>
+<p><span class="math display">\[
+m(t)=e^{5(e^t-1)}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+r(t)
+&amp;=
+\ln[m(t)] \\
+&amp;=
+\ln\left(e^{5(e^t-1)}\right) \\
+&amp;=
+5(e^t-1).
+\end{aligned}
+\]</span></p>
+<p>Differentiate once:</p>
+<p><span class="math display">\[
+r'(t)=5e^t.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu
+&amp;=
+r'(0) \\
+&amp;=
+5e^0 \\
+&amp;=
+5.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\mu=5.
+}
+\]</span></p>
+<p>For the variance, differentiate again:</p>
+<p><span class="math display">\[
+r''(t)=5e^t.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sigma^2
+&amp;=
+r''(0) \\
+&amp;=
+5e^0 \\
+&amp;=
+5.
+\end{aligned}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+\sigma^2=5.
+}
+\]</span></p></li>
 </ol>
+</details>
+</section>
+<section id="probability-generating-functions" class="level4" data-number="2.2.1.7">
+<h4 data-number="2.2.1.7" class="anchored" data-anchor-id="probability-generating-functions"><span class="header-section-number">2.2.1.7</span> Probability-generating functions</h4>
+<p>An important class of discrete random variables is one in which <span class="math inline">\(Y\)</span> represents a count and consequently takes integer values: <span class="math inline">\(Y= 0, 1, 2, 3, \dots .\)</span> The binomial, geometric, hypergeometric, and Poisson random variables all fall in this class.</p>
+<p>A mathematical device useful in finding the probability distribution and other properties of integer-valued random variables is the probability-generating function.</p>
+<p>Let <span class="math inline">\(Y\)</span> be an integer-valued rv for which <span class="math inline">\(P(Y=i)=p_i\)</span>, where <span class="math inline">\(i=0,1,2,\dots .\)</span> The <strong>probability-generating function</strong> <span class="math inline">\(P(t)\)</span> for <span class="math inline">\(Y\)</span> is defined to be <span class="math display">\[ P(t)=E(t^y) = p_0 + p_1t + p_2t^2 + \dots = \sum_{i=0}^\infty p_it^i \]</span> for all values of <span class="math inline">\(t\)</span> such that <span class="math inline">\(P(t)\)</span> is finite.</p>
+<p>The reason for calling <span class="math inline">\(P(t)\)</span> a probability-generating function is clear when we compare <span class="math inline">\(P(t)\)</span> with the mgf <span class="math inline">\(m(t)\)</span>. In particular, the coefficient of <span class="math inline">\(t^i\)</span> in <span class="math inline">\(P(t)\)</span> is the probability <span class="math inline">\(p_i\)</span>. Correspondingly, the coefficient of <span class="math inline">\(t^i\)</span> for <span class="math inline">\(m(t)\)</span> is a constant times the <span class="math inline">\(i\)</span>th moment <span class="math inline">\(\mu'_i\)</span>. If we know <span class="math inline">\(P(t)\)</span> and can expand it into a series, we can determine <span class="math inline">\(p(y)\)</span> as the coefficient of <span class="math inline">\(t^y\)</span>.</p>
+<p>Repeated differentiation of <span class="math inline">\(P(t)\)</span> yields <strong>factorial moments</strong> for the random variable <span class="math inline">\(Y\)</span>.</p>
+<p>The <span class="math inline">\(k\)</span>th factorial moment for a random variable <span class="math inline">\(Y\)</span> is defined to be</p>
+<p><span class="math display">\[ \mu_{[k]} = E[Y(Y-1)(Y-2)\dots(Y-k+1)], \]</span> where <span class="math inline">\(k\)</span> is a positive integer.</p>
+<p>Notice that <span class="math inline">\(\mu_{[1]} = E(Y) = \mu.\)</span> The second factorial moment, <span class="math inline">\(\mu_{[2]} = E[Y(Y-1)]\)</span>, useful in finding the variance.</p>
+<p>If $P(t) is the probability-generating function for an integer-valued random variable, <span class="math inline">\(Y\)</span>, then the <span class="math inline">\(k\)</span>th factorial moment of <span class="math inline">\(Y\)</span> is given by <span class="math display">\[
+\left.
+\frac{d^kP(t)}{dt^k}
+\right|_{t=1}
+=
+P^{(k)}(1)
+=
+\mu_{[k]}.
+\]</span></p>
+<details class="frame">
+<summary>
+Proof
+</summary>
+<p>Because</p>
+<p><span class="math display">\[
+P(t)
+=
+p_0+p_1t+p_2t^2+p_3t^3+p_4t^4+\cdots,
+\]</span></p>
+<p>it follows that</p>
+<p><span class="math display">\[
+P^{(1)}(t)
+=
+\frac{dP(t)}{dt}
+=
+p_1+2p_2t+3p_3t^2+4p_4t^3+\cdots,
+\]</span></p>
+<p><span class="math display">\[
+P^{(2)}(t)
+=
+\frac{d^2P(t)}{dt^2}
+=
+(2)(1)p_2+(3)(2)p_3t+(4)(3)p_4t^2+\cdots,
+\]</span></p>
+<p>and, in general,</p>
+<p><span class="math display">\[
+P^{(k)}(t)
+=
+\frac{d^kP(t)}{dt^k}
+=
+\sum_{y=k}^{\infty}
+y(y-1)(y-2)\cdots(y-k+1)p(y)t^{y-k}.
+\]</span></p>
+<p>Setting <span class="math inline">\(t=1\)</span> in each of these derivatives, we obtain</p>
+<p><span class="math display">\[
+P^{(1)}(1)
+=
+p_1+2p_2+3p_3+4p_4+\cdots
+=
+\mu_{[1]}
+=
+E(Y),
+\]</span></p>
+<p><span class="math display">\[
+P^{(2)}(1)
+=
+(2)(1)p_2+(3)(2)p_3+(4)(3)p_4+\cdots
+=
+\mu_{[2]}
+=
+E[Y(Y-1)],
+\]</span></p>
+<p>and, in general,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P^{(k)}(1)
+&amp;=
+\sum_{y=k}^{\infty}
+y(y-1)(y-2)\cdots(y-k+1)p(y) \\
+&amp;=
+E\left[
+Y(Y-1)(Y-2)\cdots(Y-k+1)
+\right] \\
+&amp;=
+\mu_{[k]}.
+\end{aligned}
+\]</span></p>
+</details>
+<details class="frame">
+<summary>
+Some exercises
+</summary>
+<ol type="1">
+<li><p>Wackerly Example 3.26 — Find the probability-generating function for a geometric random variable.</p>
+<p>Answer: Notice that <span class="math inline">\(p_0=0\)</span> because <span class="math inline">\(Y\)</span> cannot take the value <span class="math inline">\(0\)</span>. Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(t)
+&amp;=
+E(t^Y) \\
+&amp;=
+\sum_{y=1}^{\infty} t^y q^{y-1}p \\
+&amp;=
+\sum_{y=1}^{\infty} \frac{p}{q}(qt)^y \\
+&amp;=
+\frac{p}{q}
+\left[
+qt+(qt)^2+(qt)^3+\cdots
+\right].
+\end{aligned}
+\]</span></p>
+<p>The terms form an infinite geometric series. For <span class="math inline">\(qt&lt;1\)</span>,</p>
+<p><span class="math display">\[
+qt+(qt)^2+(qt)^3+\cdots
+=
+\frac{qt}{1-qt}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(t)
+&amp;=
+\frac{p}{q}
+\left(
+\frac{qt}{1-qt}
+\right) \\
+&amp;=
+\frac{pt}{1-qt},
+\qquad t&lt;\frac{1}{q}.
+\end{aligned}
+\]</span></p></li>
+<li><p>Wackerly Example 3.27 — Use <span class="math inline">\(P(t)\)</span> to find the mean of a geometric random variable.</p>
+<p>Answer: We know that <span class="math display">\[
+\mu_{[1]}
+=
+\mu
+=
+P^{(1)}(1).
+\]</span></p>
+<p>Using the result from Example 3.26,</p>
+<p><span class="math display">\[
+P(t)
+=
+\frac{pt}{1-qt}.
+\]</span></p>
+<p>Differentiate using the quotient rule:</p>
+<p><span class="math display">\[
+\begin{aligned}
+P^{(1)}(t)
+&amp;=
+\frac{d}{dt}
+\left(
+\frac{pt}{1-qt}
+\right) \\
+&amp;=
+\frac{
+(1-qt)p-(pt)(-q)
+}{
+(1-qt)^2
+}.
+\end{aligned}
+\]</span></p>
+<p>Setting <span class="math inline">\(t=1\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P^{(1)}(1)
+&amp;=
+\frac{
+(1-q)p+pq
+}{
+(1-q)^2
+} \\
+&amp;=
+\frac{
+p^2+pq
+}{
+p^2
+} \\
+&amp;=
+\frac{
+p(p+q)
+}{
+p^2
+} \\
+&amp;=
+\frac{1}{p},
+\end{aligned}
+\]</span></p>
+<p>since</p>
+<p><span class="math display">\[
+p+q=1.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+E(Y)=\mu=\frac{1}{p}.
+}
+\]</span></p></li>
+<li><p>Wackerly 3.165 — Let <span class="math inline">\(Y\)</span> denote a Poisson rv with mean <span class="math inline">\(\lambda\)</span>. Find the probability-generating function for <span class="math inline">\(Y\)</span> and use it to find <span class="math inline">\(E(Y)\)</span> and <span class="math inline">\(V(Y)\)</span>.</p>
+<p>Answer: Let</p>
+<p><span class="math display">\[
+Y\sim \operatorname{Pois}(\lambda),
+\]</span></p>
+<p>so that</p>
+<p><span class="math display">\[
+P(Y=y)
+=
+\frac{\lambda^y e^{-\lambda}}{y!},
+\qquad
+y=0,1,2,\ldots
+\]</span></p>
+<p>The probability-generating function is</p>
+<p><span class="math display">\[
+P(t)=E(t^Y).
+\]</span></p>
+<p>Since <span class="math inline">\(Y\)</span> is discrete,</p>
+<p><span class="math display">\[
+P(t)
+=
+\sum_{y=0}^{\infty}
+t^yP(Y=y).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(t)
+&amp;=
+\sum_{y=0}^{\infty}
+t^y
+\frac{\lambda^y e^{-\lambda}}{y!} \\
+&amp;=
+e^{-\lambda}
+\sum_{y=0}^{\infty}
+\frac{(\lambda t)^y}{y!} \\
+&amp;=
+e^{-\lambda}e^{\lambda t} \\
+&amp;=
+e^{\lambda(t-1)}.
+\end{aligned}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+P(t)=e^{\lambda(t-1)}.
+}
+\]</span></p>
+<p>To find the mean, use</p>
+<p><span class="math display">\[
+E(Y)=P'(1).
+\]</span></p>
+<p>Differentiate:</p>
+<p><span class="math display">\[
+P'(t)
+=
+\lambda e^{\lambda(t-1)}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(Y)
+&amp;=
+P'(1) \\
+&amp;=
+\lambda e^{\lambda(1-1)} \\
+&amp;=
+\lambda.
+\end{aligned}
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{
+E(Y)=\lambda.
+}
+\]</span></p>
+<p>For the variance, the second derivative gives the second factorial moment:</p>
+<p><span class="math display">\[
+P''(1)
+=
+E[Y(Y-1)].
+\]</span></p>
+<p>Differentiate again:</p>
+<p><span class="math display">\[
+P''(t)
+=
+\lambda^2e^{\lambda(t-1)}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+P''(1)=\lambda^2,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+E[Y(Y-1)]
+=
+\lambda^2.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+Y^2
+=
+Y(Y-1)+Y,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(Y^2)
+&amp;=
+E[Y(Y-1)]+E(Y) \\
+&amp;=
+\lambda^2+\lambda.
+\end{aligned}
+\]</span></p>
+<p>Finally,</p>
+<p><span class="math display">\[
+\begin{aligned}
+V(Y)
+&amp;=
+E(Y^2)-[E(Y)]^2 \\
+&amp;=
+\lambda^2+\lambda-\lambda^2 \\
+&amp;=
+\lambda.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+E(Y)=\lambda,
+\qquad
+V(Y)=\lambda.
+}
+\]</span></p></li>
+<li><p>Wackerly 3.166 — Use the probability-generating function found in the previous exercise to find <span class="math inline">\(E(Y^3)\)</span>.</p>
+<p>Answer: From the previous exercise, the probability-generating function of a Poisson random variable is</p>
+<p><span class="math display">\[
+P(t)=e^{\lambda(t-1)}.
+\]</span></p>
+<p>We want to find</p>
+<p><span class="math display">\[
+E(Y^3).
+\]</span></p>
+<p>The derivatives of the probability-generating function give factorial moments:</p>
+<p><span class="math display">\[
+P'(1)=E(Y),
+\]</span></p>
+<p><span class="math display">\[
+P''(1)=E[Y(Y-1)],
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+P'''(1)=E[Y(Y-1)(Y-2)].
+\]</span></p>
+<p>Differentiate the probability-generating function:</p>
+<p><span class="math display">\[
+P'(t)
+=
+\lambda e^{\lambda(t-1)},
+\]</span></p>
+<p><span class="math display">\[
+P''(t)
+=
+\lambda^2 e^{\lambda(t-1)},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+P'''(t)
+=
+\lambda^3 e^{\lambda(t-1)}.
+\]</span></p>
+<p>Setting <span class="math inline">\(t=1\)</span>,</p>
+<p><span class="math display">\[
+P'(1)=\lambda,
+\]</span></p>
+<p><span class="math display">\[
+P''(1)=\lambda^2,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+P'''(1)=\lambda^3.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+E(Y)=\lambda,
+\]</span></p>
+<p><span class="math display">\[
+E[Y(Y-1)]=\lambda^2,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+E[Y(Y-1)(Y-2)]=\lambda^3.
+\]</span></p>
+<p>We now rewrite <span class="math inline">\(Y^3\)</span> in terms of factorial expressions. First,</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y(Y-1)(Y-2)
+&amp;=
+Y(Y^2-3Y+2) \\
+&amp;=
+Y^3-3Y^2+2Y.
+\end{aligned}
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+Y(Y-1)=Y^2-Y,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+Y^2=Y(Y-1)+Y.
+\]</span></p>
+<p>Substituting this into the previous expression,</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y(Y-1)(Y-2)
+&amp;=
+Y^3-3[Y(Y-1)+Y]+2Y \\
+&amp;=
+Y^3-3Y(Y-1)-Y.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+Y^3
+=
+Y(Y-1)(Y-2)
++
+3Y(Y-1)
++
+Y.
+\]</span></p>
+<p>Taking expectations,</p>
+<p><span class="math display">\[
+E(Y^3)
+=
+E[Y(Y-1)(Y-2)]
++
+3E[Y(Y-1)]
++
+E(Y).
+\]</span></p>
+<p>Using the factorial moments found above,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(Y^3)
+&amp;=
+\lambda^3
++
+3\lambda^2
++
+\lambda.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+E(Y^3)
+=
+\lambda^3+3\lambda^2+\lambda.
+}
+\]</span></p></li>
+</ol>
+</details>
+</section>
+<section id="tchebysheffs-theorem" class="level4" data-number="2.2.1.8">
+<h4 data-number="2.2.1.8" class="anchored" data-anchor-id="tchebysheffs-theorem"><span class="header-section-number">2.2.1.8</span> Tchebysheff’s theorem</h4>
+<p>The following result, known as <strong>Tchebysheff’s theorem</strong>, can be used to determine a lower bound for the probability that the random variable <span class="math inline">\(Y\)</span> of interest falls in an interval <span class="math inline">\(\mu \pm k\sigma\)</span>.</p>
+<p>Let <span class="math inline">\(Y\)</span> be a random variable with mean <span class="math inline">\(\mu\)</span> and finite variance <span class="math inline">\(\sigma^2\)</span>. Then, for any constant <span class="math inline">\(k&gt;0\)</span>,</p>
+<p><span class="math display">\[ P(|Y-\mu| &lt; k \sigma) \geq 1- \frac{1}{k^2} \quad \text{or} \quad P(|Y-\mu| \geq k \sigma) \leq \frac{1}{k^2}. \]</span></p>
+<p>Two important aspects of this result should be pointed out. First, the result applies for any probability distribution. Second, the results of the theorem are very conservative in the sense that the actual probability that <span class="math inline">\(Y\)</span> is in the interval <span class="math inline">\(\mu \pm k\sigma\)</span> usually exceeds the lower bound for the probability, <span class="math inline">\(1-1/k^2\)</span>, by a considerable amount.</p>
+<details class="frame">
+<summary>
+Some exercises
+</summary>
+<ol type="1">
+<li><p>Wackerly Example 3.28 — The number of customers per day at a sales counter, <span class="math inline">\(Y\)</span>, has been observed for a long period of time and found to have mean 20 and standard deviation 2. The probability distribution of <span class="math inline">\(Y\)</span> is not known. What can be said about the probability that, tomorrow, <span class="math inline">\(Y\)</span> will be greater than 16 but less than 24?</p>
+<p>Answer: We want</p>
+<p><span class="math display">\[
+P(16&lt;Y&lt;24).
+\]</span></p>
+<p>By Tchebysheff’s theorem,</p>
+<p><span class="math display">\[
+P(\mu-k\sigma&lt;Y&lt;\mu+k\sigma)
+\geq
+1-\frac{1}{k^2}.
+\]</span></p>
+<p>Here,</p>
+<p><span class="math display">\[
+\mu=20,
+\qquad
+\sigma=2.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+20-2(2)=16
+\qquad\text{and}\qquad
+20+2(2)=24,
+\]</span></p>
+<p>we have <span class="math inline">\(k=2\)</span>. Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(16&lt;Y&lt;24)
+&amp;=
+P(\mu-2\sigma&lt;Y&lt;\mu+2\sigma) \\
+&amp;\geq
+1-\frac{1}{2^2} \\
+&amp;=
+\frac{3}{4}.
+\end{aligned}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+P(16&lt;Y&lt;24)\geq\frac{3}{4}.
+}
+\]</span></p>
+<p>If instead <span class="math inline">\(\sigma=1\)</span>, then <span class="math inline">\(k=4\)</span>, so</p>
+<p><span class="math display">\[
+P(16&lt;Y&lt;24)
+\geq
+1-\frac{1}{4^2}
+=
+\frac{15}{16}.
+\]</span></p></li>
+<li><p>Wackerly 3.167 — Let <span class="math inline">\(Y\)</span> be a random variable with mean 11 and variance 9. Using Tchebysheff’s theorem, find</p>
+<ol type="a">
+<li><p>a lower bound for <span class="math inline">\(P(6 &lt; Y &lt; 16)\)</span></p>
+<p>Answer: We have</p>
+<p><span class="math display">\[
+\mu=11,
+\qquad
+\sigma=\sqrt{9}=3.
+\]</span></p>
+<p>The interval <span class="math inline">\((6,16)\)</span> is centered at the mean:</p>
+<p><span class="math display">\[
+11-k(3)=6
+\qquad\Rightarrow\qquad
+k=\frac{5}{3}.
+\]</span></p>
+<p>By Tchebysheff’s theorem,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(6&lt;Y&lt;16)
+&amp;=
+P\left(\mu-\frac{5}{3}\sigma&lt;Y&lt;\mu+\frac{5}{3}\sigma\right) \\
+&amp;\geq
+1-\frac{1}{(5/3)^2} \\
+&amp;=
+1-\frac{9}{25} \\
+&amp;=
+\frac{16}{25}.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+P(6&lt;Y&lt;16)\geq\frac{16}{25}=0.64.
+}
+\]</span></p></li>
+<li><p>the value of <span class="math inline">\(C\)</span> such that <span class="math inline">\(P(|Y-11| \geq C) \leq 0.09.\)</span></p>
+<p>Answer: Tchebysheff’s theorem gives</p>
+<p><span class="math display">\[
+P(|Y-\mu|\geq k\sigma)
+\leq
+\frac{1}{k^2}.
+\]</span></p>
+<p>We want</p>
+<p><span class="math display">\[
+P(|Y-11|\geq C)\leq0.09.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\frac{1}{k^2}=0.09,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\begin{aligned}
+k^2
+&amp;=
+\frac{1}{0.09}
+=
+\frac{100}{9}, \\
+k
+&amp;=
+\frac{10}{3}.
+\end{aligned}
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+C=k\sigma
+\]</span></p>
+<p>and <span class="math inline">\(\sigma=3\)</span>,</p>
+<p><span class="math display">\[
+C
+=
+\frac{10}{3}(3)
+=
+10.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+C=10.
+}
+\]</span></p></li>
+</ol></li>
+<li><p>Wackerly 3.171 — For a certain type of soil the number of wireworms per cubic foot has a mean of 100. Assuming a Poisson distribution of wireworms, give an interval that will include at least 5/9 of the sample values of wireworms counts obtained from a large number of 1-cubic-foot samples.</p>
+<p>Answer: Since <span class="math inline">\(Y\)</span> has a Poisson distribution with mean <span class="math inline">\(100\)</span>,</p>
+<p><span class="math display">\[
+\mu=100,
+\qquad
+\sigma^2=100,
+\qquad
+\sigma=10.
+\]</span></p>
+<p>By Tchebysheff’s theorem,</p>
+<p><span class="math display">\[
+P(\mu-k\sigma&lt;Y&lt;\mu+k\sigma)
+\geq
+1-\frac{1}{k^2}.
+\]</span></p>
+<p>We want the probability to be at least <span class="math inline">\(5/9\)</span>, so</p>
+<p><span class="math display">\[
+\begin{aligned}
+1-\frac{1}{k^2}
+&amp;=
+\frac{5}{9} \\
+\frac{1}{k^2}
+&amp;=
+\frac{4}{9} \\
+k
+&amp;=
+\frac{3}{2}.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mu-k\sigma
+&amp;=
+100-\frac{3}{2}(10)
+=
+85, \\
+\mu+k\sigma
+&amp;=
+100+\frac{3}{2}(10)
+=
+115.
+\end{aligned}
+\]</span></p>
+<p>Thus, an interval containing at least <span class="math inline">\(5/9\)</span> of the sample values is</p>
+<p><span class="math display">\[
+\boxed{
+(85,115).
+}
+\]</span></p></li>
+<li><p>Wackerly 3.179 — We determined that the mean and variance of the costs necessary to find three employees with positive indications of asbestos poisoning were 150 and 4500, respectively. Is it highly unlikely that the cost of completing the tests will exceed $<span class="math inline">\(350\)</span>?</p>
+<p>Answer: We are given</p>
+<p><span class="math display">\[
+\mu=150,
+\qquad
+\sigma^2=4500,
+\qquad
+\sigma=\sqrt{4500}\approx67.08.
+\]</span></p>
+<p>We want to bound</p>
+<p><span class="math display">\[
+P(Y&gt;350).
+\]</span></p>
+<p>Since <span class="math inline">\(350\)</span> is <span class="math inline">\(200\)</span> above the mean,</p>
+<p><span class="math display">\[
+350-150=200.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+P(Y&gt;350)
+\leq
+P(|Y-150|\geq200).
+\]</span></p>
+<p>Write <span class="math inline">\(200\)</span> in terms of standard deviations:</p>
+<p><span class="math display">\[
+k
+=
+\frac{200}{67.08}
+\approx
+2.98.
+\]</span></p>
+<p>By Tchebysheff’s theorem,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(|Y-150|\geq200)
+&amp;\leq
+\frac{1}{(2.98)^2} \\
+&amp;\approx
+0.113.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+P(Y&gt;350)\leq0.113.
+}
+\]</span></p>
+<p>Tchebysheff’s theorem only guarantees that the probability is at most about <span class="math inline">\(11.3\%\)</span>, so we cannot conclude that exceeding <span class="math inline">\(\$350\)</span> is highly unlikely.</p></li>
+</ol>
+</details>
+</section>
+<section id="summary" class="level4" data-number="2.2.1.9">
+<h4 data-number="2.2.1.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">2.2.1.9</span> Summary</h4>
+<p>This chapter covered discrete random variables, their probability mass functions, expected values, and the main discrete distributions: binomial, geometric, negative binomial, hypergeometric, and Poisson.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th style="text-align: right;"><span class="math inline">\(E(Y)\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(V(Y)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomial</td>
+<td style="text-align: right;"><span class="math inline">\(np\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(npq\)</span></td>
+</tr>
+<tr class="even">
+<td>Geometric</td>
+<td style="text-align: right;"><span class="math inline">\(\frac{1}{p}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\frac{q}{p^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Hypergeometric</td>
+<td style="text-align: right;"><span class="math inline">\(n\frac{r}{N}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(n\frac{r}{N}\frac{N-r}{N}\frac{N-n}{N-1}\)</span></td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td style="text-align: right;"><span class="math inline">\(\lambda\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td>Negative binomial</td>
+<td style="text-align: right;"><span class="math inline">\(\frac{r}{p}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(\frac{rq}{p^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The corresponding R functions are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Distribution</th>
+<th><span class="math inline">\(P(Y=y_0)\)</span></th>
+<th><span class="math inline">\(P(Y\leq y_0)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binomial</td>
+<td><code>dbinom(y0, n, p)</code></td>
+<td><code>pbinom(y0, n, p)</code></td>
+</tr>
+<tr class="even">
+<td>Geometric</td>
+<td><code>dgeom(y0 - 1, p)</code></td>
+<td><code>pgeom(y0 - 1, p)</code></td>
+</tr>
+<tr class="odd">
+<td>Hypergeometric</td>
+<td><code>dhyper(y0, r, N-r, n)</code></td>
+<td><code>phyper(y0, r, N-r, n)</code></td>
+</tr>
+<tr class="even">
+<td>Poisson</td>
+<td><code>dpois(y0, lambda)</code></td>
+<td><code>ppois(y0, lambda)</code></td>
+</tr>
+<tr class="odd">
+<td>Negative binomial</td>
+<td><code>dnbinom(y0 - r, r, p)</code></td>
+<td><code>pnbinom(y0 - r, r, p)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Moment-generating functions can be used to obtain moments and identify distributions, while probability-generating functions are useful for moments and distributions of integer-valued random variables.</p>
+<p>Finally, Tchebysheff’s theorem provides probability bounds when only the mean and variance are known.</p>
+<details class="frame">
+<summary>
+Supplementary exercises
+</summary>
+<ol type="1">
+<li><p>Wackerly 3.202 — The number of cars driving past a parking area in a one-minute time interval has a Poisson distribution with mean <span class="math inline">\(\lambda\)</span>. The probability that any individual driver actually wants to park his or her car is <span class="math inline">\(p\)</span>. Assume that individuals decide whether to park independently of one another.</p>
+<ol type="a">
+<li><p>If one parking place is available and it will take you one minute to reach the parking area, what is the probability that a space will still be available when you reach the lot. Assume that no one leaves the lot during the one-minute interval.</p>
+<p>Answer: Let <span class="math inline">\(Y\)</span> be the number of cars that pass the parking area during the minute. Then</p>
+<p><span class="math display">\[
+Y\sim\operatorname{Pois}(\lambda).
+\]</span></p>
+<p>If exactly <span class="math inline">\(Y=y\)</span> cars pass, each driver independently does <strong>not</strong> want to park with probability <span class="math inline">\(1-p\)</span>. Therefore,</p>
+<p><span class="math display">\[
+P(\text{space available}\mid Y=y)
+=
+(1-p)^y.
+\]</span></p>
+<p>To obtain the unconditional probability, sum over all possible values of <span class="math inline">\(Y\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{space available})
+&amp;=
+\sum_{y=0}^{\infty}
+(1-p)^y P(Y=y) \\
+&amp;=
+\sum_{y=0}^{\infty}
+(1-p)^y
+\frac{\lambda^y e^{-\lambda}}{y!} \\
+&amp;=
+e^{-\lambda}
+\sum_{y=0}^{\infty}
+\frac{[\lambda(1-p)]^y}{y!}.
+\end{aligned}
+\]</span></p>
+<p>Using the exponential series,</p>
+<p><span class="math display">\[
+\sum_{y=0}^{\infty}\frac{x^y}{y!}=e^x,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{space available})
+&amp;=
+e^{-\lambda}e^{\lambda(1-p)} \\
+&amp;=
+e^{-\lambda p}.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+P(\text{space still available})=e^{-\lambda p}.
+}
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(W\)</span> denote the number of drivers who wish to park during a one-minute interval. Derive the probability distribution of <span class="math inline">\(W\)</span>.</p>
+<p>Answer: Let <span class="math inline">\(Y\)</span> be the total number of cars passing during the minute, with</p>
+<p><span class="math display">\[
+Y\sim\operatorname{Pois}(\lambda),
+\]</span></p>
+<p>and let <span class="math inline">\(W\)</span> be the number of those drivers who wish to park.</p>
+<p>Conditional on <span class="math inline">\(Y=y\)</span>, each of the <span class="math inline">\(y\)</span> drivers independently wishes to park with probability <span class="math inline">\(p\)</span>. Therefore,</p>
+<p><span class="math display">\[
+W\mid Y=y
+\sim
+\operatorname{Bin}(y,p).
+\]</span></p>
+<p>For <span class="math inline">\(w=0,1,2,\ldots\)</span>,</p>
+<p><span class="math display">\[
+P(W=w)
+=
+\sum_{y=w}^{\infty}
+P(W=w\mid Y=y)P(Y=y).
+\]</span></p>
+<p>Substituting the binomial and Poisson probabilities,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(W=w)
+&amp;=
+\sum_{y=w}^{\infty}
+\binom{y}{w}
+p^w(1-p)^{y-w}
+\frac{\lambda^y e^{-\lambda}}{y!} \\
+&amp;=
+e^{-\lambda}
+\frac{(\lambda p)^w}{w!}
+\sum_{y=w}^{\infty}
+\frac{[\lambda(1-p)]^{y-w}}{(y-w)!}.
+\end{aligned}
+\]</span></p>
+<p>Letting <span class="math inline">\(j=y-w\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(W=w)
+&amp;=
+e^{-\lambda}
+\frac{(\lambda p)^w}{w!}
+\sum_{j=0}^{\infty}
+\frac{[\lambda(1-p)]^j}{j!} \\
+&amp;=
+e^{-\lambda}
+\frac{(\lambda p)^w}{w!}
+e^{\lambda(1-p)} \\
+&amp;=
+\frac{(\lambda p)^w e^{-\lambda p}}{w!}.
+\end{aligned}
+\]</span></p>
+<p>This is the probability mass function of a Poisson random variable with mean <span class="math inline">\(\lambda p\)</span>. Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+W\sim\operatorname{Pois}(\lambda p).
+}
+\]</span></p>
+<p>Thus, independently retaining each event of a Poisson count with probability <span class="math inline">\(p\)</span> produces another Poisson count with mean multiplied by <span class="math inline">\(p\)</span>.</p>
+<p>This result is an example of <strong>Poisson thinning</strong>. If events occur according to a Poisson distribution with mean <span class="math inline">\(\lambda\)</span>, and each event is independently retained with probability <span class="math inline">\(p\)</span>, then the number of retained events is also Poisson, with mean</p>
+<p><span class="math display">\[
+\lambda p.
+\]</span></p>
+<p>Here, the original events are the cars passing the parking area, while the retained events are the drivers who actually wish to park. Therefore,</p>
+<p><span class="math display">\[
+W\sim\operatorname{Pois}(\lambda p).
+\]</span></p></li>
+</ol></li>
+<li><p>Wackerly 3.206 — Accident records collected by an automobile insurance company give the following information. The probability that an insured driver has an automobile accident is 0.15. If an accident has occurred, the damage to the vehicle amounts to 20% of its market value with a probability of 0.80, to 60% of its market value with a probability of 0.12, and to a total loss with a probability of 0.08. What premium should the company charge on a $12,000 car so that the expected gain by the company is zero?</p>
+<p>Answer: Let <span class="math inline">\(L\)</span> denote the insurer’s loss on the car.</p>
+<p>An accident occurs with probability</p>
+<p><span class="math display">\[
+P(\text{accident})=0.15.
+\]</span></p>
+<p>Given that an accident occurs, the expected proportion of the car’s value that is lost is</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\text{damage proportion}\mid\text{accident})
+&amp;=
+(0.20)(0.80)
++
+(0.60)(0.12)
++
+(1.00)(0.08) \\
+&amp;=
+0.16+0.072+0.08 \\
+&amp;=
+0.312.
+\end{aligned}
+\]</span></p>
+<p>For a car worth <span class="math inline">\(\$12{,}000\)</span>, the expected loss conditional on an accident is therefore</p>
+<p><span class="math display">\[
+12{,}000(0.312)
+=
+3{,}744.
+\]</span></p>
+<p>Since an accident occurs only with probability <span class="math inline">\(0.15\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(L)
+&amp;=
+0.15(3{,}744) \\
+&amp;=
+561.60.
+\end{aligned}
+\]</span></p>
+<p>If the premium is <span class="math inline">\(P\)</span>, the insurer’s expected gain is</p>
+<p><span class="math display">\[
+E(\text{gain})=P-E(L).
+\]</span></p>
+<p>For the expected gain to equal zero,</p>
+<p><span class="math display">\[
+P=E(L).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+P=\$561.60.
+}
+\]</span></p></li>
+<li><p>Wackerly 3.211 — A merchant stocks a certain perishable item. She knows that on any given day she will have a demand for either two, three, or four of these items with probabilities 0.1, 0.4, and 0.5, respectively. She buys the items for $1.00 each and sells them for $1.20 each. If any are left at the end of the day, they represent a total loss. How many items should the merchant stock in order to maximize her expected daily profit?</p>
+<p>Answer: Let <span class="math inline">\(D\)</span> denote daily demand:</p>
+<p><span class="math display">\[
+P(D=2)=0.1,
+\qquad
+P(D=3)=0.4,
+\qquad
+P(D=4)=0.5.
+\]</span></p>
+<p>Each item costs <span class="math inline">\(\$1.00\)</span> and sells for <span class="math inline">\(\$1.20\)</span>. Unsold items have no value.</p>
+<p>If <span class="math inline">\(s\)</span> items are stocked, the profit is</p>
+<p><span class="math display">\[
+\Pi
+=
+1.20\min(D,s)-s.
+\]</span></p>
+<p>Because demand is always between <span class="math inline">\(2\)</span> and <span class="math inline">\(4\)</span>, we compare stocking <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span>, or <span class="math inline">\(4\)</span> items.</p>
+<p>If <span class="math inline">\(s=2\)</span>, both items are always sold:</p>
+<p><span class="math display">\[
+E(\Pi\mid s=2)
+=
+2(1.20)-2
+=
+0.40.
+\]</span></p>
+<p>If <span class="math inline">\(s=3\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\Pi\mid s=3)
+&amp;=
+0.1[2(1.20)-3]
++
+0.4[3(1.20)-3]
++
+0.5[3(1.20)-3] \\
+&amp;=
+0.1(-0.60)
++
+0.4(0.60)
++
+0.5(0.60) \\
+&amp;=
+0.48.
+\end{aligned}
+\]</span></p>
+<p>If <span class="math inline">\(s=4\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(\Pi\mid s=4)
+&amp;=
+0.1[2(1.20)-4]
++
+0.4[3(1.20)-4]
++
+0.5[4(1.20)-4] \\
+&amp;=
+0.1(-1.60)
++
+0.4(-0.40)
++
+0.5(0.80) \\
+&amp;=
+0.08.
+\end{aligned}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\begin{aligned}
+s=2 &amp;: \quad E(\Pi)=\$0.40,\\
+s=3 &amp;: \quad E(\Pi)=\$0.48,\\
+s=4 &amp;: \quad E(\Pi)=\$0.08.
+\end{aligned}
+\]</span></p>
+<p>The expected profit is largest when three items are stocked. Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\text{The merchant should stock }3\text{ items.}
+}
+\]</span></p></li>
+<li><p>Wackerly 3.214 — For simplicity, let us assume that there are two kinds of drivers. The safe drivers, who are 70% of the population, have probability 0.1 of causing an accident in a year. The rest of the population are accident makers, who have probability 0.5 of causing an accident in a year. The insurance premium is $400 times one’s probability of causing an accident in the following year. A new subscriber has an accident during the first year. What should be his insurance premium for the next year?</p>
+<p>Answer: Let</p>
+<p><span class="math display">\[
+S=\text{safe driver},
+\qquad
+A=\text{accident-maker},
+\]</span></p>
+<p>and let <span class="math inline">\(C\)</span> denote the event that the driver causes an accident.</p>
+<p>Initially,</p>
+<p><span class="math display">\[
+P(S)=0.70,
+\qquad
+P(A)=0.30,
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+P(C\mid S)=0.10,
+\qquad
+P(C\mid A)=0.50.
+\]</span></p>
+<p>The subscriber caused an accident during the first year, so we first update the probabilities of the two driver types using Bayes’ rule.</p>
+<p>The total probability of an accident is</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(C)
+&amp;=
+P(C\mid S)P(S)
++
+P(C\mid A)P(A) \\
+&amp;=
+(0.10)(0.70)
++
+(0.50)(0.30) \\
+&amp;=
+0.22.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(S\mid C)
+&amp;=
+\frac{P(C\mid S)P(S)}{P(C)} \\
+&amp;=
+\frac{(0.10)(0.70)}{0.22} \\
+&amp;=
+\frac{7}{22},
+\end{aligned}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+P(A\mid C)
+=
+\frac{15}{22}.
+\]</span></p>
+<p>The probability of an accident in the following year is obtained using the <strong>law of total probability</strong>.</p>
+<p>After observing an accident in the first year,</p>
+<p><span class="math display">\[
+P(S\mid C)=\frac{7}{22},
+\qquad
+P(A\mid C)=\frac{15}{22}.
+\]</span></p>
+<p>Since the subscriber must be either a safe driver or an accident-maker,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{accident next year}\mid C)
+&amp;=
+P(\text{accident next year}\mid S)P(S\mid C) \\
+&amp;\quad+
+P(\text{accident next year}\mid A)P(A\mid C) \\
+&amp;=
+(0.10)\frac{7}{22}
++
+(0.50)\frac{15}{22} \\
+&amp;=
+\frac{41}{110} \\
+&amp;\approx
+0.3727.
+\end{aligned}
+\]</span></p>
+<p>Thus, the next-year accident probability is a weighted average of the accident probabilities for the two driver types, using the <strong>updated probabilities</strong> of belonging to each type after the first-year accident.</p>
+<p>The premium is <span class="math inline">\(\$400\)</span> times this probability:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Premium}
+&amp;=
+400\left(\frac{41}{110}\right) \\
+&amp;\approx
+149.09.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\text{Premium}\approx \$149.09.
+}
+\]</span></p>
+<p>The accident increases the estimated probability that the subscriber is an accident-maker, so the premium is based on the updated accident probability rather than the original population average.</p></li>
+</ol>
+</details>
+</section>
+</section>
+<section id="continuous-variables" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="continuous-variables"><span class="header-section-number">2.2.2</span> Continuous variables</h3>
+<p>A random variable that can take on any value in an interval is called <strong>continuous</strong>.</p>
+<p>The probability distribution for a discrete random variable can always be given by assigning a nonnegative probability to each of the possible values the variable may assume. In every case, of course, the sum of all the probabilities that we assign must be equal to 1. Unfortunately, the probability distribution for a continuous random variable cannot be specified in the same way. It is mathematically impossible to assign nonzero probabilities to all the points on a line interval while satisfying the requirement that the probabilities of the distinct possible values sum to 1. As a result, we must develop a different method to describe the probability distribution for a continuous random variable.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -1143,7 +2739,6 @@ m^{(1)}(t) = \frac{d}{dt} \left[ e^{\lambda (e^t-1)} \right] =
 Wackerly, Dennis D., William Mendenhall, and Richard L. Scheaffer. 2008. <em>Mathematical Statistics with Applications</em>. 7th ed. Thomson Brooks/Cole.
 </div>
 </div>
-</section>
 </section>
 </section>
 
