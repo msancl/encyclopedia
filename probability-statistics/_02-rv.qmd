@@ -336,23 +336,23 @@ experiment? Explain.
 4. Wackerly 3.48 — A missile protection system consists of $n$ radar sets operating independently,
 each with a probability of 0.9 of detecting a missile entering a zone that is covered by all of the units.
 
-    1. If $n$ = 5 and a missile enters the zone, what is the probability that exactly four sets detect
+    a. If $n$ = 5 and a missile enters the zone, what is the probability that exactly four sets detect
     the missile? At least one set?
 
-    Answer: Let $Y = $number of radar sets that detect the missile. Since the radar sets operate independently
-    and each detects the missile with probability $p=0.9$, we have $Y \sim \operatorname{Bin}(n, 0.9)$.
+        Answer: Let $Y = $number of radar sets that detect the missile. Since the radar sets operate independently
+        and each detects the missile with probability $p=0.9$, we have $Y \sim \operatorname{Bin}(n, 0.9)$.
 
-    For exactly four sets detecting the missile: $$ P(Y=4) = \binom{5}{4} (0.9)^4 (0.1)^1 = 0.32805. $$
+        For exactly four sets detecting the missile: $$ P(Y=4) = \binom{5}{4} (0.9)^4 (0.1)^1 = 0.32805. $$
 
-    For at least one set detecting the missile, it is easier to use the complement:
+        For at least one set detecting the missile, it is easier to use the complement:
 
-    $$ P(Y \geq 1) = 1 - P(Y=0) = 1 - (0.1)^5 = 0.99999. $$
+        $$ P(Y \geq 1) = 1 - P(Y=0) = 1 - (0.1)^5 = 0.99999. $$
 
-    2. How large must be $n$ if we require that the probability of detecting a missile that enters the zone be 0.999?
+    b. How large must be $n$ if we require that the probability of detecting a missile that enters the zone be 0.999?
 
-    $$ P(Y) \geq 0.999 \Leftrightarrow 1-(0.1)^{n} \geq 0.999 \Leftrightarrow n \geq 3. $$
+        Answer: $$ P(Y) \geq 0.999 \Leftrightarrow 1-(0.1)^{n\,} \geq 0.999 \Leftrightarrow n \geq 3. $$
 
-    Indeed, $$ P(\text{at least one detection}) = 1-(0.1)^3 = 1-0.001 = 0.999. $$
+        Indeed, $$ P(\text{at least one detection}) = 1-(0.1)^3 = 1-0.001 = 0.999. $$
 
 5. Wackerly 3.58 — A particular sale involves four items randomly selected from a large lot that is known
 to contain 10% defectives. Let $Y$ denote the number of defectives among the four sold. The purchase
@@ -1295,17 +1295,2023 @@ associated with random variables.
 
 <details class="frame">
 <summary>Some exercises</summary>
+1. Wackerly Example 3.23 — Find the moment-generating function $m(t)$ for a Poisson distributed
+random variable with mean $\lambda$.
+
+    Answer:
+    $$
+    \begin{aligned}
+    m(t) &= E(e^{tY}) = \sum_{y=0}^{\infty} e^{ty} p(y) = \sum_{y=0}^{\infty} e^{ty} \frac{\lambda^y e^{-\lambda}}{y!} \\
+    &= e^{-\lambda} \sum_{y=0}^{\infty} \frac{\left(\lambda e^t\right)^y}{y!}
+    \underset{\text{exponential series}}{=}
+    e^{-\lambda} e^{\lambda e^t} = e^{\lambda (e^t -1)}
+    \end{aligned}
+    $$
+    See @sec-exponential-series.
+
+2. Wackerly Example 3.24 — Use the MGF to find the mean and variance for the Poisson random variable.
+
+    Answer: $\mu = \mu'_1 = m^{(1)}(0)$ and $\mu = \mu'_2 = m^{(2)}(0)$.
+
+    Taking the first and second derivatives of $m(t)$, we obtain
+
+    $$
+    \begin{aligned}
+    m^{(1)}(t) &= \frac{d}{dt} \left[ e^{\lambda (e^t-1)} \right] = e^{\lambda (e^t-1)} \cdot \lambda e^t, \\
+    m^{(2)}(t) &= \frac{d}{dt} \left[e^{\lambda (e^t-1)} \cdot \lambda e^t \right] = e^{\lambda (e^t-1)} \cdot \left( \lambda e^t \right)^2
+    + e^{\lambda (e^t-1)} \cdot \lambda e^t.
+    \end{aligned}
+    $$
+
+    Then,
+
+    $$
+    \begin{aligned}
+    \mu
+    &= m^{(1)}(0)
+    = \left[
+    e^{\lambda(e^t-1)} \cdot \lambda e^t
+    \right]_{t=0}
+    = \lambda, \\[1em]
+    \mu_2'
+    &= m^{(2)}(0)
+    = \left[
+    e^{\lambda(e^t-1)} \cdot (\lambda e^t)^2
+    +
+    e^{\lambda(e^t-1)} \cdot \lambda e^t
+    \right]_{t=0}
+    = \lambda^2+\lambda.
+    \end{aligned}
+    $$
+
+    To find $\sigma^2$, we simply use the fact that
+
+    $$ \sigma^2 = E(Y^2) - \mu^2 = \mu'_2 - \mu^2 = \lambda^2 + \lambda - (\lambda)^2 = \lambda. $$
+
+3. Wackerly Example 3.25 — Suppose that $Y$ is a rv with mgf $m_Y(t) = e^{3.2(e^t -1)}.$
+What is the distribution of $Y$?
+
+    Answer: We showed that the mgf of a Poisson distributed rv with mean $\lambda$ is $m(t)=e^{\lambda(e^t -1)}$.
+    Because mgfs are unique, $Y$ must have a Poisson distribution with mean 3.2.
+
+4. Wackerly 3.145 — If $Y$ has a binomial distribution with $n$ trials and probability of success $p$, show that
+the mgf for $Y$ is
+
+    $$ m(t) = \left(pe^t + q\right)^n, \quad \text{where } q = 1-p. $$
+
+    Answer: we start from the definition of the mgf: $$ m(t) = E(e^{tY}) = \sum_{y=0}^n e^{ty} P(Y=y). $$
+
+    For $Y \sim \operatorname{Bin}(n,p)$,
+
+    the probability distribution function is 
+
+    $$ P(Y=y) = \binom{n}{y} p^y q^{n-y}, \qquad q=1-p. $$
+
+    We then substitute it inside:
+
+    $$ m(t) = \sum_{y=0}^n e^{ty} \binom{n}{y} p^y q^{n-y}. $$
+
+    We can combine $e^{ty}$ and $p^y$:
+
+    $$ e^{ty}p^y = (e^t)^y p^y = (pe^t)^y. $$
+
+    Therefore, $$ m(t) = \sum_{y=0}^n \binom{n}{y} (pe^t)^y q^{n-y}. $$
+
+    This has exactly the form of the binomial theorem:
+
+    $$ (a+b)^n = \sum_{y=0}^n \binom{n}{y} a^y b^{n-y}. $$
+
+    If we take $a=pe^t$ and $b=q$, we have
+
+    $$ m(t) = (pe^t + q)^n. $$
+
+5. Wackerly 3.153 — Find the distributions of the random variables that have each of the following
+mgfs:
+
+    a. $$ m(t) = \left[(1/3)e^t + (2/3)\right]^5. $$
+
+        Answer: The idea is to match each mgf with a known mgf form. 
+
+        We can identify $p=1/3$, $q=2/3$ and $n=5$. Therefore, $Y \sim \operatorname{Bin}(5, 1/3).$
+
+
+    b. $$ m(t) =  \frac{e^t}{2-e^t}. $$
+
+        Answer: The geometric mgf is $$ m(t) = \frac{pe^t}{1-qe^t}. $$
+
+        If we divide the numerator and the denominator by 2 in the expression, we get:
+
+        $$ \frac{e^t}{2-e^t} = \frac{\frac{1}{2}e^t}{1-\frac{1}{2}e^t}. $$
+
+        Hence, $p=1/2$, $q=1/2$, and $Y \sim \operatorname{Geom}(\frac{1}{2})$, where $Y= 1, 2, 3, \dots$
+        is the trial on which the first success occurs.
+
+    c. $$ m(t) = e^{2(e^t-1)}. $$
+
+        Answer: The Poisson mgf is $$ m(t) = e^{\lambda(e^t -1)}. $$
+
+        So $\lambda = 2$ and $Y \sim \operatorname{Pois}(2).$
+
+6. Wackerly 3.155 — Let $m(t) = (1/6)e^t + (2/6)e^{2t} + (3/6) e^{3t}$.
+
+    a. Find $E(Y)$.
+
+        Answer: 
+
+        Differentiate the moment-generating function once:
+
+        $$
+        \begin{aligned}
+        m'(t)
+        &=
+        \frac{1}{6}e^t
+        +
+        \frac{2}{6}(2e^{2t})
+        +
+        \frac{3}{6}(3e^{3t}) \\
+        &=
+        \frac{1}{6}e^t
+        +
+        \frac{4}{6}e^{2t}
+        +
+        \frac{9}{6}e^{3t}.
+        \end{aligned}
+        $$
+
+        Since
+
+        $$
+        E(Y)=m'(0),
+        $$
+
+        we obtain
+
+        $$
+        \begin{aligned}
+        E(Y)
+        &=m'(0) \\
+        &=
+        \frac{1}{6}
+        +
+        \frac{4}{6}
+        +
+        \frac{9}{6} \\
+        &=
+        \frac{14}{6} \\
+        &=
+        \frac{7}{3}.
+        \end{aligned}
+        $$
+
+    b. Find $V(Y)$.
+
+        Answer:
+
+        To find the variance, first compute the second derivative:
+
+        $$
+        \begin{aligned}
+        m''(t)
+        &=
+        \frac{1}{6}e^t
+        +
+        \frac{8}{6}e^{2t}
+        +
+        \frac{27}{6}e^{3t}.
+        \end{aligned}
+        $$
+
+        Since
+
+        $$
+        E(Y^2)=m''(0),
+        $$
+
+        we obtain
+
+        $$
+        \begin{aligned}
+        E(Y^2)
+        &=m''(0) \\
+        &=
+        \frac{1}{6}
+        +
+        \frac{8}{6}
+        +
+        \frac{27}{6} \\
+        &=
+        \frac{36}{6} \\
+        &=
+        6.
+        \end{aligned}
+        $$
+
+        Then
+
+        $$
+        V(Y)
+        =
+        E(Y^2)-[E(Y)]^2.
+        $$
+
+        Therefore,
+
+        $$
+        \begin{aligned}
+        V(Y)
+        &=
+        6-\left(\frac{7}{3}\right)^2 \\
+        &=
+        6-\frac{49}{9} \\
+        &=
+        \frac{54}{9}-\frac{49}{9} \\
+        &=
+        \frac{5}{9}.
+        \end{aligned}
+        $$
+
+    c. Find the distribution of $Y$.
+
+        Answer: 
+
+        For a discrete random variable,
+
+        $$
+        m(t)
+        =
+        E(e^{tY})
+        =
+        \sum_y e^{ty}p(y).
+        $$
+
+        Comparing this with
+
+        $$
+        m(t)
+        =
+        \frac{1}{6}e^t
+        +
+        \frac{2}{6}e^{2t}
+        +
+        \frac{3}{6}e^{3t},
+        $$
+
+        we can read the probabilities directly:
+
+        $$
+        P(Y=1)=\frac{1}{6},
+        $$
+
+        $$
+        P(Y=2)=\frac{2}{6}=\frac{1}{3},
+        $$
+
+        and
+
+        $$
+        P(Y=3)=\frac{3}{6}=\frac{1}{2}.
+        $$
+
+        Therefore,
+
+        $$
+        p(y)
+        =
+        \begin{cases}
+        \frac{1}{6}, & y=1,\\
+        \frac{1}{3}, & y=2,\\
+        \frac{1}{2}, & y=3,\\
+        0, & \text{otherwise}.
+        \end{cases}
+        $$
+
+        The probabilities sum to
+
+        $$
+        \frac{1}{6}+\frac{2}{6}+\frac{3}{6}=1.
+        $$
+
+7. Wackerly 3.158 — If $Y$ is a rv with mgf $m(t)$ and if $W$ is given by $W=aY+b$, show that the mgf of $W$ is $e^{tb} m(at)$.
+
+    Answer: Start from the definition of the moment-generating function of $W$:
+
+    $$
+    m_W(t)=E(e^{tW}).
+    $$
+
+    Since
+
+    $$
+    W=aY+b,
+    $$
+
+    we have
+
+    $$
+    \begin{aligned}
+    m_W(t)
+    &=
+    E\left(e^{t(aY+b)}\right) \\
+    &=
+    E\left(e^{taY}e^{tb}\right).
+    \end{aligned}
+    $$
+
+    Because $e^{tb}$ does not depend on the random variable $Y$, it is constant with respect to the expectation:
+
+    $$
+    \begin{aligned}
+    m_W(t)
+    &=
+    e^{tb}E\left(e^{taY}\right).
+    \end{aligned}
+    $$
+
+    Now, since
+
+    $$
+    m_Y(t)=E(e^{tY}),
+    $$
+
+    replacing $t$ by $at$ gives
+
+    $$
+    m_Y(at)
+    =
+    E\left(e^{(at)Y}\right)
+    =
+    E\left(e^{taY}\right).
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    m_W(t)=e^{tb}m_Y(at)
+    }
+    $$
+
+8. Wackerly 3.162 — Let $r(t) = ln[m(t)]$ and $r^{(k)}(0)$ denote the $k$th derivative
+of $r(t)$ evaluated for $t=0$. Show that $r^{(1)}= 0 = \mu'_1 = \mu$ and $r^{(2)}(0) = \mu'_2 - (\mu'_1)^2 = \sigma^2.$
+
+    Answer:
+
+    Since
+
+    $$
+    r(t)=\ln[m(t)],
+    $$
+
+    using
+
+    $$
+    \frac{d}{dt}\ln[f(t)]
+    =
+    \frac{f'(t)}{f(t)},
+    $$
+
+    we obtain
+
+    $$
+    r'(t)
+    =
+    \frac{m'(t)}{m(t)}.
+    $$
+
+    Also,
+
+    $$
+    m(0)
+    =
+    E(e^{0Y})
+    =
+    E(1)
+    =
+    1.
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    r'(0)
+    &=
+    \frac{m'(0)}{m(0)} \\
+    &=
+    \frac{\mu_1'}{1} \\
+    &=
+    \mu_1' \\
+    &=
+    \mu.
+    \end{aligned}
+    $$
+
+    Hence,
+
+    $$
+    \boxed{
+    r'(0)=\mu.
+    }
+    $$
+
+    For the second derivative we now differentiate
+
+    $$
+    r'(t)=\frac{m'(t)}{m(t)}
+    $$
+
+    using the quotient rule:
+
+    $$
+    \frac{d}{dt}
+    \left[
+    \frac{f(t)}{g(t)}
+    \right]
+    =
+    \frac{
+    f'(t)g(t)-f(t)g'(t)
+    }{
+    [g(t)]^2
+    }.
+    $$
+
+    Therefore,
+
+    $$
+    r''(t)
+    =
+    \frac{
+    m''(t)m(t)-[m'(t)]^2
+    }{
+    [m(t)]^2
+    }.
+    $$
+
+    Evaluating at $t=0$,
+
+    $$
+    \begin{aligned}
+    r''(0)
+    &=
+    \frac{
+    m''(0)m(0)-[m'(0)]^2
+    }{
+    [m(0)]^2
+    } \\
+    &=
+    \frac{
+    \mu_2'(1)-(\mu_1')^2
+    }{
+    1^2
+    } \\
+    &=
+    \mu_2'-(\mu_1')^2.
+    \end{aligned}
+    $$
+
+    Since
+
+    $$
+    \mu_2'=E(Y^2)
+    $$
+
+    and
+
+    $$
+    \mu_1'=E(Y)=\mu,
+    $$
+
+    we obtain
+
+    $$
+    \begin{aligned}
+    r''(0)
+    &=
+    E(Y^2)-[E(Y)]^2 \\
+    &=
+    V(Y) \\
+    &=
+    \sigma^2.
+    \end{aligned}
+    $$
+
+    Hence,
+
+    $$
+    \boxed{
+    r''(0)=\sigma^2.
+    }
+    $$
+
+9. Wackerly 3.163 — Find the mean and variance of a Poisson rv with $m(t) = e^{5(e^t-1)}$ using the results of the previous exercise.
+
+    Answer: Using the result from the previous exercise,
+
+    $$
+    r(t)=\ln[m(t)],
+    $$
+
+    with
+
+    $$
+    r'(0)=\mu
+    $$
+
+    and
+
+    $$
+    r''(0)=\sigma^2.
+    $$
+
+    Here,
+
+    $$
+    m(t)=e^{5(e^t-1)}.
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    r(t)
+    &=
+    \ln[m(t)] \\
+    &=
+    \ln\left(e^{5(e^t-1)}\right) \\
+    &=
+    5(e^t-1).
+    \end{aligned}
+    $$
+
+    Differentiate once:
+
+    $$
+    r'(t)=5e^t.
+    $$
+
+    Hence,
+
+    $$
+    \begin{aligned}
+    \mu
+    &=
+    r'(0) \\
+    &=
+    5e^0 \\
+    &=
+    5.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    \mu=5.
+    }
+    $$
+
+    For the variance, differentiate again:
+
+    $$
+    r''(t)=5e^t.
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    \sigma^2
+    &=
+    r''(0) \\
+    &=
+    5e^0 \\
+    &=
+    5.
+    \end{aligned}
+    $$
+
+    Hence,
+
+    $$
+    \boxed{
+    \sigma^2=5.
+    }
+    $$
+
+</details>
+
+#### Probability-generating functions
+
+An important class of discrete random variables is one in which $Y$ represents a count
+and consequently takes integer values: $Y= 0, 1, 2, 3, \dots .$
+The binomial, geometric, hypergeometric, and Poisson random variables all fall in this class.
+
+A mathematical device useful in finding the probability distribution and other properties
+of integer-valued random variables is the probability-generating function.
+
+Let $Y$ be an integer-valued rv for which $P(Y=i)=p_i$, where $i=0,1,2,\dots .$
+The **probability-generating function** $P(t)$ for $Y$ is defined to be
+$$ P(t)=E(t^y) = p_0 + p_1t + p_2t^2 + \dots = \sum_{i=0}^\infty p_it^i $$
+for all values of $t$ such that $P(t)$ is finite.
+
+The reason for calling $P(t)$ a probability-generating function is clear when we compare $P(t)$
+with the mgf $m(t)$. In particular, the coefficient of $t^i$ in $P(t)$ is the probability $p_i$.
+Correspondingly, the coefficient of $t^i$ for $m(t)$ is a constant times the
+$i$th moment $\mu'_i$. If we know $P(t)$ and can expand it into a series, we can
+determine $p(y)$ as the coefficient of $t^y$.
+
+Repeated differentiation of $P(t)$ yields **factorial moments** for the random variable $Y$.
+
+The $k$th factorial moment for a random variable $Y$ is defined to be
+
+$$ \mu_{[k]} = E[Y(Y-1)(Y-2)\dots(Y-k+1)], $$ where $k$ is a positive integer.
+
+Notice that $\mu_{[1]} = E(Y) = \mu.$ The second factorial moment,
+$\mu_{[2]} = E[Y(Y-1)]$, useful in finding the variance.
+
+If $P(t) is the probability-generating function for an integer-valued random variable,
+$Y$, then the $k$th factorial moment of $Y$ is given by
+$$
+\left.
+\frac{d^kP(t)}{dt^k}
+\right|_{t=1}
+=
+P^{(k)}(1)
+=
+\mu_{[k]}.
+$$
+
+<details class="frame">
+<summary>Proof</summary>
+Because
+
+$$
+P(t)
+=
+p_0+p_1t+p_2t^2+p_3t^3+p_4t^4+\cdots,
+$$
+
+it follows that
+
+$$
+P^{(1)}(t)
+=
+\frac{dP(t)}{dt}
+=
+p_1+2p_2t+3p_3t^2+4p_4t^3+\cdots,
+$$
+
+$$
+P^{(2)}(t)
+=
+\frac{d^2P(t)}{dt^2}
+=
+(2)(1)p_2+(3)(2)p_3t+(4)(3)p_4t^2+\cdots,
+$$
+
+and, in general,
+
+$$
+P^{(k)}(t)
+=
+\frac{d^kP(t)}{dt^k}
+=
+\sum_{y=k}^{\infty}
+y(y-1)(y-2)\cdots(y-k+1)p(y)t^{y-k}.
+$$
+
+Setting $t=1$ in each of these derivatives, we obtain
+
+$$
+P^{(1)}(1)
+=
+p_1+2p_2+3p_3+4p_4+\cdots
+=
+\mu_{[1]}
+=
+E(Y),
+$$
+
+$$
+P^{(2)}(1)
+=
+(2)(1)p_2+(3)(2)p_3+(4)(3)p_4+\cdots
+=
+\mu_{[2]}
+=
+E[Y(Y-1)],
+$$
+
+and, in general,
+
+$$
+\begin{aligned}
+P^{(k)}(1)
+&=
+\sum_{y=k}^{\infty}
+y(y-1)(y-2)\cdots(y-k+1)p(y) \\
+&=
+E\left[
+Y(Y-1)(Y-2)\cdots(Y-k+1)
+\right] \\
+&=
+\mu_{[k]}.
+\end{aligned}
+$$
+
+</details>
+
+<details class="frame">
+<summary>Some exercises</summary>
+
+
+
+
+1. Wackerly Example 3.26 — Find the probability-generating function for a geometric random variable.
+
+    Answer: Notice that $p_0=0$ because $Y$ cannot take the value $0$. Therefore,
+
+    $$
+    \begin{aligned}
+    P(t)
+    &=
+    E(t^Y) \\
+    &=
+    \sum_{y=1}^{\infty} t^y q^{y-1}p \\
+    &=
+    \sum_{y=1}^{\infty} \frac{p}{q}(qt)^y \\
+    &=
+    \frac{p}{q}
+    \left[
+    qt+(qt)^2+(qt)^3+\cdots
+    \right].
+    \end{aligned}
+    $$
+
+    The terms form an infinite geometric series. For $qt<1$,
+
+    $$
+    qt+(qt)^2+(qt)^3+\cdots
+    =
+    \frac{qt}{1-qt}.
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    P(t)
+    &=
+    \frac{p}{q}
+    \left(
+    \frac{qt}{1-qt}
+    \right) \\
+    &=
+    \frac{pt}{1-qt},
+    \qquad t<\frac{1}{q}.
+    \end{aligned}
+    $$
+
+2. Wackerly Example 3.27 — Use $P(t)$ to find the mean of a geometric random variable.
+
+    Answer: We know that $$
+    \mu_{[1]}
+    =
+    \mu
+    =
+    P^{(1)}(1).
+    $$
+
+    Using the result from Example 3.26,
+
+    $$
+    P(t)
+    =
+    \frac{pt}{1-qt}.
+    $$
+
+    Differentiate using the quotient rule:
+
+    $$
+    \begin{aligned}
+    P^{(1)}(t)
+    &=
+    \frac{d}{dt}
+    \left(
+    \frac{pt}{1-qt}
+    \right) \\
+    &=
+    \frac{
+    (1-qt)p-(pt)(-q)
+    }{
+    (1-qt)^2
+    }.
+    \end{aligned}
+    $$
+
+    Setting $t=1$,
+
+    $$
+    \begin{aligned}
+    P^{(1)}(1)
+    &=
+    \frac{
+    (1-q)p+pq
+    }{
+    (1-q)^2
+    } \\
+    &=
+    \frac{
+    p^2+pq
+    }{
+    p^2
+    } \\
+    &=
+    \frac{
+    p(p+q)
+    }{
+    p^2
+    } \\
+    &=
+    \frac{1}{p},
+    \end{aligned}
+    $$
+
+    since
+
+    $$
+    p+q=1.
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    E(Y)=\mu=\frac{1}{p}.
+    }
+    $$
+
+3. Wackerly 3.165 — Let $Y$ denote a Poisson rv with mean $\lambda$. Find the probability-generating
+function for $Y$ and use it to find $E(Y)$ and $V(Y)$.
+
+    Answer: Let
+
+    $$
+    Y\sim \operatorname{Pois}(\lambda),
+    $$
+
+    so that
+
+    $$
+    P(Y=y)
+    =
+    \frac{\lambda^y e^{-\lambda}}{y!},
+    \qquad
+    y=0,1,2,\ldots
+    $$
+
+    The probability-generating function is
+
+    $$
+    P(t)=E(t^Y).
+    $$
+
+    Since $Y$ is discrete,
+
+    $$
+    P(t)
+    =
+    \sum_{y=0}^{\infty}
+    t^yP(Y=y).
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    P(t)
+    &=
+    \sum_{y=0}^{\infty}
+    t^y
+    \frac{\lambda^y e^{-\lambda}}{y!} \\
+    &=
+    e^{-\lambda}
+    \sum_{y=0}^{\infty}
+    \frac{(\lambda t)^y}{y!} \\
+    &=
+    e^{-\lambda}e^{\lambda t} \\
+    &=
+    e^{\lambda(t-1)}.
+    \end{aligned}
+    $$
+
+    Thus,
+
+    $$
+    \boxed{
+    P(t)=e^{\lambda(t-1)}.
+    }
+    $$
+
+    To find the mean, use
+
+    $$
+    E(Y)=P'(1).
+    $$
+
+    Differentiate:
+
+    $$
+    P'(t)
+    =
+    \lambda e^{\lambda(t-1)}.
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    E(Y)
+    &=
+    P'(1) \\
+    &=
+    \lambda e^{\lambda(1-1)} \\
+    &=
+    \lambda.
+    \end{aligned}
+    $$
+
+    Hence,
+
+    $$
+    \boxed{
+    E(Y)=\lambda.
+    }
+    $$
+
+    For the variance, the second derivative gives the second factorial moment:
+
+    $$
+    P''(1)
+    =
+    E[Y(Y-1)].
+    $$
+
+    Differentiate again:
+
+    $$
+    P''(t)
+    =
+    \lambda^2e^{\lambda(t-1)}.
+    $$
+
+    Therefore,
+
+    $$
+    P''(1)=\lambda^2,
+    $$
+
+    so
+
+    $$
+    E[Y(Y-1)]
+    =
+    \lambda^2.
+    $$
+
+    Since
+
+    $$
+    Y^2
+    =
+    Y(Y-1)+Y,
+    $$
+
+    we obtain
+
+    $$
+    \begin{aligned}
+    E(Y^2)
+    &=
+    E[Y(Y-1)]+E(Y) \\
+    &=
+    \lambda^2+\lambda.
+    \end{aligned}
+    $$
+
+    Finally,
+
+    $$
+    \begin{aligned}
+    V(Y)
+    &=
+    E(Y^2)-[E(Y)]^2 \\
+    &=
+    \lambda^2+\lambda-\lambda^2 \\
+    &=
+    \lambda.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    E(Y)=\lambda,
+    \qquad
+    V(Y)=\lambda.
+    }
+    $$
+
+4. Wackerly 3.166 — Use the probability-generating function found in the previous exercise to find $E(Y^3)$.
+
+    Answer: From the previous exercise, the probability-generating function of a Poisson random variable is
+
+    $$
+    P(t)=e^{\lambda(t-1)}.
+    $$
+
+    We want to find
+
+    $$
+    E(Y^3).
+    $$
+
+    The derivatives of the probability-generating function give factorial moments:
+
+    $$
+    P'(1)=E(Y),
+    $$
+
+    $$
+    P''(1)=E[Y(Y-1)],
+    $$
+
+    and
+
+    $$
+    P'''(1)=E[Y(Y-1)(Y-2)].
+    $$
+
+    Differentiate the probability-generating function:
+
+    $$
+    P'(t)
+    =
+    \lambda e^{\lambda(t-1)},
+    $$
+
+    $$
+    P''(t)
+    =
+    \lambda^2 e^{\lambda(t-1)},
+    $$
+
+    and
+
+    $$
+    P'''(t)
+    =
+    \lambda^3 e^{\lambda(t-1)}.
+    $$
+
+    Setting $t=1$,
+
+    $$
+    P'(1)=\lambda,
+    $$
+
+    $$
+    P''(1)=\lambda^2,
+    $$
+
+    and
+
+    $$
+    P'''(1)=\lambda^3.
+    $$
+
+    Therefore,
+
+    $$
+    E(Y)=\lambda,
+    $$
+
+    $$
+    E[Y(Y-1)]=\lambda^2,
+    $$
+
+    and
+
+    $$
+    E[Y(Y-1)(Y-2)]=\lambda^3.
+    $$
+
+    We now rewrite $Y^3$ in terms of factorial expressions. First,
+
+    $$
+    \begin{aligned}
+    Y(Y-1)(Y-2)
+    &=
+    Y(Y^2-3Y+2) \\
+    &=
+    Y^3-3Y^2+2Y.
+    \end{aligned}
+    $$
+
+    Also,
+
+    $$
+    Y(Y-1)=Y^2-Y,
+    $$
+
+    so
+
+    $$
+    Y^2=Y(Y-1)+Y.
+    $$
+
+    Substituting this into the previous expression,
+
+    $$
+    \begin{aligned}
+    Y(Y-1)(Y-2)
+    &=
+    Y^3-3[Y(Y-1)+Y]+2Y \\
+    &=
+    Y^3-3Y(Y-1)-Y.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    Y^3
+    =
+    Y(Y-1)(Y-2)
+    +
+    3Y(Y-1)
+    +
+    Y.
+    $$
+
+    Taking expectations,
+
+    $$
+    E(Y^3)
+    =
+    E[Y(Y-1)(Y-2)]
+    +
+    3E[Y(Y-1)]
+    +
+    E(Y).
+    $$
+
+    Using the factorial moments found above,
+
+    $$
+    \begin{aligned}
+    E(Y^3)
+    &=
+    \lambda^3
+    +
+    3\lambda^2
+    +
+    \lambda.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    E(Y^3)
+    =
+    \lambda^3+3\lambda^2+\lambda.
+    }
+    $$
+
 </details>
 
 
+#### Tchebysheff's theorem
+
+The following result, known as **Tchebysheff's theorem**, can be used to determine
+a lower bound for the probability that the random variable $Y$ of interest falls in
+an interval $\mu \pm k\sigma$.
+
+Let $Y$ be a random variable with mean $\mu$ and finite variance $\sigma^2$.
+Then, for any constant $k>0$,
+
+$$ P(|Y-\mu| < k \sigma) \geq 1- \frac{1}{k^2} \quad \text{or} \quad P(|Y-\mu| \geq k \sigma) \leq \frac{1}{k^2}. $$
+
+Two important aspects of this result should be pointed out. First, the result applies for any probability
+distribution. Second, the results of the theorem are very conservative in the sense that the
+actual probability that $Y$ is in the interval $\mu \pm k\sigma$ usually exceeds the lower bound
+for the probability, $1-1/k^2$, by a considerable amount.
+
+<details class="frame">
+<summary>Some exercises</summary>
+
+1. Wackerly Example 3.28 — The number of customers per day at a sales counter, $Y$, has been observed for a long
+period of time and found to have mean 20 and standard deviation 2. The probability distribution of $Y$
+is not known. What can be said about the probability that, tomorrow, $Y$ will be greater than 16 but less than 24?
+
+    Answer: We want
+
+    $$
+    P(16<Y<24).
+    $$
+
+    By Tchebysheff's theorem,
+
+    $$
+    P(\mu-k\sigma<Y<\mu+k\sigma)
+    \geq
+    1-\frac{1}{k^2}.
+    $$
+
+    Here,
+
+    $$
+    \mu=20,
+    \qquad
+    \sigma=2.
+    $$
+
+    Since
+
+    $$
+    20-2(2)=16
+    \qquad\text{and}\qquad
+    20+2(2)=24,
+    $$
+
+    we have $k=2$. Therefore,
+
+    $$
+    \begin{aligned}
+    P(16<Y<24)
+    &=
+    P(\mu-2\sigma<Y<\mu+2\sigma) \\
+    &\geq
+    1-\frac{1}{2^2} \\
+    &=
+    \frac{3}{4}.
+    \end{aligned}
+    $$
+
+    Thus,
+
+    $$
+    \boxed{
+    P(16<Y<24)\geq\frac{3}{4}.
+    }
+    $$
+
+    If instead $\sigma=1$, then $k=4$, so
+
+    $$
+    P(16<Y<24)
+    \geq
+    1-\frac{1}{4^2}
+    =
+    \frac{15}{16}.
+    $$
+
+2. Wackerly 3.167 — Let $Y$ be a random variable with mean 11 and variance 9. Using Tchebysheff's theorem, find
+
+    a. a lower bound for $P(6 < Y < 16)$
+
+        Answer: We have
+
+        $$
+        \mu=11,
+        \qquad
+        \sigma=\sqrt{9}=3.
+        $$
+
+        The interval $(6,16)$ is centered at the mean:
+
+        $$
+        11-k(3)=6
+        \qquad\Rightarrow\qquad
+        k=\frac{5}{3}.
+        $$
+
+        By Tchebysheff's theorem,
+
+        $$
+        \begin{aligned}
+        P(6<Y<16)
+        &=
+        P\left(\mu-\frac{5}{3}\sigma<Y<\mu+\frac{5}{3}\sigma\right) \\
+        &\geq
+        1-\frac{1}{(5/3)^2} \\
+        &=
+        1-\frac{9}{25} \\
+        &=
+        \frac{16}{25}.
+        \end{aligned}
+        $$
+
+        Therefore,
+
+        $$
+        \boxed{
+        P(6<Y<16)\geq\frac{16}{25}=0.64.
+        }
+        $$
+
+    b. the value of $C$ such that $P(|Y-11| \geq C) \leq 0.09.$
+
+        Answer: Tchebysheff's theorem gives
+
+        $$
+        P(|Y-\mu|\geq k\sigma)
+        \leq
+        \frac{1}{k^2}.
+        $$
+
+        We want
+
+        $$
+        P(|Y-11|\geq C)\leq0.09.
+        $$
+
+        Thus,
+
+        $$
+        \frac{1}{k^2}=0.09,
+        $$
+
+        so
+
+        $$
+        \begin{aligned}
+        k^2
+        &=
+        \frac{1}{0.09}
+        =
+        \frac{100}{9}, \\
+        k
+        &=
+        \frac{10}{3}.
+        \end{aligned}
+        $$
+
+        Since
+
+        $$
+        C=k\sigma
+        $$
+
+        and $\sigma=3$,
+
+        $$
+        C
+        =
+        \frac{10}{3}(3)
+        =
+        10.
+        $$
+
+        Therefore,
+
+        $$
+        \boxed{
+        C=10.
+        }
+        $$
+
+3. Wackerly 3.171 — For a certain type of soil the number of wireworms per cubic foot has a mean of 100.
+Assuming a Poisson distribution of wireworms, give an interval that will include at least 5/9 of the sample values of wireworms
+counts obtained from a large number of 1-cubic-foot samples.
+
+    Answer: Since $Y$ has a Poisson distribution with mean $100$,
+
+    $$
+    \mu=100,
+    \qquad
+    \sigma^2=100,
+    \qquad
+    \sigma=10.
+    $$
+
+    By Tchebysheff's theorem,
+
+    $$
+    P(\mu-k\sigma<Y<\mu+k\sigma)
+    \geq
+    1-\frac{1}{k^2}.
+    $$
+
+    We want the probability to be at least $5/9$, so
+
+    $$
+    \begin{aligned}
+    1-\frac{1}{k^2}
+    &=
+    \frac{5}{9} \\
+    \frac{1}{k^2}
+    &=
+    \frac{4}{9} \\
+    k
+    &=
+    \frac{3}{2}.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    \mu-k\sigma
+    &=
+    100-\frac{3}{2}(10)
+    =
+    85, \\
+    \mu+k\sigma
+    &=
+    100+\frac{3}{2}(10)
+    =
+    115.
+    \end{aligned}
+    $$
+
+    Thus, an interval containing at least $5/9$ of the sample values is
+
+    $$
+    \boxed{
+    (85,115).
+    }
+    $$
+
+4. Wackerly 3.179 — We determined that the mean and variance of the costs necessary to find
+three employees with positive indications of asbestos poisoning were 150 and 4500, respectively.
+Is it highly unlikely that the cost of completing the tests will exceed $$350$?
+
+    Answer: We are given
+
+    $$
+    \mu=150,
+    \qquad
+    \sigma^2=4500,
+    \qquad
+    \sigma=\sqrt{4500}\approx67.08.
+    $$
+
+    We want to bound
+
+    $$
+    P(Y>350).
+    $$
+
+    Since $350$ is $200$ above the mean,
+
+    $$
+    350-150=200.
+    $$
+
+    Thus,
+
+    $$
+    P(Y>350)
+    \leq
+    P(|Y-150|\geq200).
+    $$
+
+    Write $200$ in terms of standard deviations:
+
+    $$
+    k
+    =
+    \frac{200}{67.08}
+    \approx
+    2.98.
+    $$
+
+    By Tchebysheff's theorem,
+
+    $$
+    \begin{aligned}
+    P(|Y-150|\geq200)
+    &\leq
+    \frac{1}{(2.98)^2} \\
+    &\approx
+    0.113.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    P(Y>350)\leq0.113.
+    }
+    $$
+
+    Tchebysheff's theorem only guarantees that the probability is at most about $11.3\%$, so we cannot conclude that exceeding $\$350$ is highly unlikely.
+
+</details>
+#### Summary
+
+This chapter covered discrete random variables, their probability mass functions, expected values, and the main discrete distributions: binomial, geometric, negative binomial, hypergeometric, and Poisson.
 
 
+| Distribution | $E(Y)$ | $V(Y)$ |
+|---|---:|---:|
+| Binomial | $np$ | $npq$ |
+| Geometric | $\frac{1}{p}$ | $\frac{q}{p^2}$ |
+| Hypergeometric | $n\frac{r}{N}$ | $n\frac{r}{N}\frac{N-r}{N}\frac{N-n}{N-1}$ |
+| Poisson | $\lambda$ | $\lambda$ |
+| Negative binomial | $\frac{r}{p}$ | $\frac{rq}{p^2}$ |
+
+The corresponding R functions are:
+
+| Distribution | $P(Y=y_0)$ | $P(Y\leq y_0)$ |
+|---|---|---|
+| Binomial | `dbinom(y0, n, p)` | `pbinom(y0, n, p)` |
+| Geometric | `dgeom(y0 - 1, p)` | `pgeom(y0 - 1, p)` |
+| Hypergeometric | `dhyper(y0, r, N-r, n)` | `phyper(y0, r, N-r, n)` |
+| Poisson | `dpois(y0, lambda)` | `ppois(y0, lambda)` |
+| Negative binomial | `dnbinom(y0 - r, r, p)` | `pnbinom(y0 - r, r, p)` |
+
+Moment-generating functions can be used to obtain moments and identify distributions, while probability-generating functions are useful for moments and distributions of integer-valued random variables.
+
+Finally, Tchebysheff's theorem provides probability bounds when only the mean and variance are known.
+
+<details class="frame">
+<summary>Supplementary exercises</summary>
+1. Wackerly 3.202 — The number of cars driving past a parking area in a one-minute time interval has a Poisson distribution
+with mean $\lambda$. The probability that any individual driver actually wants to park his or her car is $p$.
+Assume that individuals decide whether to park independently of one another. 
+
+    a. If one parking place is available and it will take you one minute to reach the parking area,
+    what is the probability that a space will still be available when you reach the lot. Assume that no one leaves
+    the lot during the one-minute interval.
+
+        Answer: Let $Y$ be the number of cars that pass the parking area during the minute. Then
+
+        $$
+        Y\sim\operatorname{Pois}(\lambda).
+        $$
+
+        If exactly $Y=y$ cars pass, each driver independently does **not** want to park with probability $1-p$. Therefore,
+
+        $$
+        P(\text{space available}\mid Y=y)
+        =
+        (1-p)^y.
+        $$
+
+        To obtain the unconditional probability, sum over all possible values of $Y$:
+
+        $$
+        \begin{aligned}
+        P(\text{space available})
+        &=
+        \sum_{y=0}^{\infty}
+        (1-p)^y P(Y=y) \\
+        &=
+        \sum_{y=0}^{\infty}
+        (1-p)^y
+        \frac{\lambda^y e^{-\lambda}}{y!} \\
+        &=
+        e^{-\lambda}
+        \sum_{y=0}^{\infty}
+        \frac{[\lambda(1-p)]^y}{y!}.
+        \end{aligned}
+        $$
+
+        Using the exponential series,
+
+        $$
+        \sum_{y=0}^{\infty}\frac{x^y}{y!}=e^x,
+        $$
+
+        we obtain
+
+        $$
+        \begin{aligned}
+        P(\text{space available})
+        &=
+        e^{-\lambda}e^{\lambda(1-p)} \\
+        &=
+        e^{-\lambda p}.
+        \end{aligned}
+        $$
+
+        Therefore,
+
+        $$
+        \boxed{
+        P(\text{space still available})=e^{-\lambda p}.
+        }
+        $$
+
+    b. Let $W$ denote the number of drivers who wish to park during a one-minute interval. Derive the probability
+    distribution of $W$.
+
+        Answer: Let $Y$ be the total number of cars passing during the minute, with
+
+        $$
+        Y\sim\operatorname{Pois}(\lambda),
+        $$
+
+        and let $W$ be the number of those drivers who wish to park.
+
+        Conditional on $Y=y$, each of the $y$ drivers independently wishes to park with probability $p$. Therefore,
+
+        $$
+        W\mid Y=y
+        \sim
+        \operatorname{Bin}(y,p).
+        $$
+
+        For $w=0,1,2,\ldots$,
+
+        $$
+        P(W=w)
+        =
+        \sum_{y=w}^{\infty}
+        P(W=w\mid Y=y)P(Y=y).
+        $$
+
+        Substituting the binomial and Poisson probabilities,
+
+        $$
+        \begin{aligned}
+        P(W=w)
+        &=
+        \sum_{y=w}^{\infty}
+        \binom{y}{w}
+        p^w(1-p)^{y-w}
+        \frac{\lambda^y e^{-\lambda}}{y!} \\
+        &=
+        e^{-\lambda}
+        \frac{(\lambda p)^w}{w!}
+        \sum_{y=w}^{\infty}
+        \frac{[\lambda(1-p)]^{y-w}}{(y-w)!}.
+        \end{aligned}
+        $$
+
+        Letting $j=y-w$,
+
+        $$
+        \begin{aligned}
+        P(W=w)
+        &=
+        e^{-\lambda}
+        \frac{(\lambda p)^w}{w!}
+        \sum_{j=0}^{\infty}
+        \frac{[\lambda(1-p)]^j}{j!} \\
+        &=
+        e^{-\lambda}
+        \frac{(\lambda p)^w}{w!}
+        e^{\lambda(1-p)} \\
+        &=
+        \frac{(\lambda p)^w e^{-\lambda p}}{w!}.
+        \end{aligned}
+        $$
+
+        This is the probability mass function of a Poisson random variable with mean $\lambda p$. Therefore,
+
+        $$
+        \boxed{
+        W\sim\operatorname{Pois}(\lambda p).
+        }
+        $$
+
+        Thus, independently retaining each event of a Poisson count with probability $p$ produces another Poisson count with mean multiplied by $p$.
+
+        This result is an example of **Poisson thinning**. If events occur according to a Poisson distribution with mean $\lambda$, and each event is independently retained with probability $p$, then the number of retained events is also Poisson, with mean
+
+        $$
+        \lambda p.
+        $$
+
+        Here, the original events are the cars passing the parking area, while the retained events are the drivers who actually wish to park. Therefore,
+
+        $$
+        W\sim\operatorname{Pois}(\lambda p).
+        $$
+
+2. Wackerly 3.206 — Accident records collected by an automobile insurance company give
+the following information. The probability that an insured driver has an automobile accident is 0.15. If an accident has
+occurred, the damage to the vehicle amounts to 20% of its market value with a probability of 0.80, to 60% of its market value
+with a probability of 0.12, and to a total loss with a probability of 0.08. What premium should the company charge on
+a $12,000 car so that the expected gain by the company is zero?
+
+    Answer: Let $L$ denote the insurer's loss on the car.
+
+    An accident occurs with probability
+
+    $$
+    P(\text{accident})=0.15.
+    $$
+
+    Given that an accident occurs, the expected proportion of the car's value that is lost is
+
+    $$
+    \begin{aligned}
+    E(\text{damage proportion}\mid\text{accident})
+    &=
+    (0.20)(0.80)
+    +
+    (0.60)(0.12)
+    +
+    (1.00)(0.08) \\
+    &=
+    0.16+0.072+0.08 \\
+    &=
+    0.312.
+    \end{aligned}
+    $$
+
+    For a car worth $\$12{,}000$, the expected loss conditional on an accident is therefore
+
+    $$
+    12{,}000(0.312)
+    =
+    3{,}744.
+    $$
+
+    Since an accident occurs only with probability $0.15$,
+
+    $$
+    \begin{aligned}
+    E(L)
+    &=
+    0.15(3{,}744) \\
+    &=
+    561.60.
+    \end{aligned}
+    $$
+
+    If the premium is $P$, the insurer's expected gain is
+
+    $$
+    E(\text{gain})=P-E(L).
+    $$
+
+    For the expected gain to equal zero,
+
+    $$
+    P=E(L).
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    P=\$561.60.
+    }
+    $$
+
+3. Wackerly 3.211 — A merchant stocks a certain perishable item. She knows that on any given day she will have a demand for either
+two, three, or four of these items with probabilities 0.1, 0.4, and 0.5, respectively. She buys the items for $1.00 each
+and sells them for $1.20 each. If any are left at the end of the day, they represent a total loss. How many items should the merchant stock
+in order to maximize her expected daily profit?
+
+    Answer: Let $D$ denote daily demand:
+
+    $$
+    P(D=2)=0.1,
+    \qquad
+    P(D=3)=0.4,
+    \qquad
+    P(D=4)=0.5.
+    $$
+
+    Each item costs $\$1.00$ and sells for $\$1.20$. Unsold items have no value.
+
+    If $s$ items are stocked, the profit is
+
+    $$
+    \Pi
+    =
+    1.20\min(D,s)-s.
+    $$
+
+    Because demand is always between $2$ and $4$, we compare stocking $2$, $3$, or $4$ items.
+
+    If $s=2$, both items are always sold:
+
+    $$
+    E(\Pi\mid s=2)
+    =
+    2(1.20)-2
+    =
+    0.40.
+    $$
+
+    If $s=3$,
+
+    $$
+    \begin{aligned}
+    E(\Pi\mid s=3)
+    &=
+    0.1[2(1.20)-3]
+    +
+    0.4[3(1.20)-3]
+    +
+    0.5[3(1.20)-3] \\
+    &=
+    0.1(-0.60)
+    +
+    0.4(0.60)
+    +
+    0.5(0.60) \\
+    &=
+    0.48.
+    \end{aligned}
+    $$
+
+    If $s=4$,
+
+    $$
+    \begin{aligned}
+    E(\Pi\mid s=4)
+    &=
+    0.1[2(1.20)-4]
+    +
+    0.4[3(1.20)-4]
+    +
+    0.5[4(1.20)-4] \\
+    &=
+    0.1(-1.60)
+    +
+    0.4(-0.40)
+    +
+    0.5(0.80) \\
+    &=
+    0.08.
+    \end{aligned}
+    $$
+
+    Thus,
+
+    $$
+    \begin{aligned}
+    s=2 &: \quad E(\Pi)=\$0.40,\\
+    s=3 &: \quad E(\Pi)=\$0.48,\\
+    s=4 &: \quad E(\Pi)=\$0.08.
+    \end{aligned}
+    $$
+
+    The expected profit is largest when three items are stocked. Therefore,
+
+    $$
+    \boxed{
+    \text{The merchant should stock }3\text{ items.}
+    }
+    $$
+
+4. Wackerly 3.214 — For simplicity, let us assume that there are two kinds of drivers. The safe drivers, who are 70% of the population,
+have probability 0.1 of causing an accident in a year. The rest of the population are accident makers, who have probability 0.5 of causing
+an accident in a year. The insurance premium is $400 times one's probability of causing an accident in the following year. A new subscriber has an
+accident during the first year. What should be his insurance premium for the next year?
+
+    Answer: Let
+
+    $$
+    S=\text{safe driver},
+    \qquad
+    A=\text{accident-maker},
+    $$
+
+    and let $C$ denote the event that the driver causes an accident.
+
+    Initially,
+
+    $$
+    P(S)=0.70,
+    \qquad
+    P(A)=0.30,
+    $$
+
+    with
+
+    $$
+    P(C\mid S)=0.10,
+    \qquad
+    P(C\mid A)=0.50.
+    $$
+
+    The subscriber caused an accident during the first year, so we first update the probabilities of the two driver types using Bayes' rule.
+
+    The total probability of an accident is
+
+    $$
+    \begin{aligned}
+    P(C)
+    &=
+    P(C\mid S)P(S)
+    +
+    P(C\mid A)P(A) \\
+    &=
+    (0.10)(0.70)
+    +
+    (0.50)(0.30) \\
+    &=
+    0.22.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \begin{aligned}
+    P(S\mid C)
+    &=
+    \frac{P(C\mid S)P(S)}{P(C)} \\
+    &=
+    \frac{(0.10)(0.70)}{0.22} \\
+    &=
+    \frac{7}{22},
+    \end{aligned}
+    $$
+
+    and
+
+    $$
+    P(A\mid C)
+    =
+    \frac{15}{22}.
+    $$
+
+    The probability of an accident in the following year is obtained using the **law of total probability**.
+
+    After observing an accident in the first year,
+
+    $$
+    P(S\mid C)=\frac{7}{22},
+    \qquad
+    P(A\mid C)=\frac{15}{22}.
+    $$
+
+    Since the subscriber must be either a safe driver or an accident-maker,
+
+    $$
+    \begin{aligned}
+    P(\text{accident next year}\mid C)
+    &=
+    P(\text{accident next year}\mid S)P(S\mid C) \\
+    &\quad+
+    P(\text{accident next year}\mid A)P(A\mid C) \\
+    &=
+    (0.10)\frac{7}{22}
+    +
+    (0.50)\frac{15}{22} \\
+    &=
+    \frac{41}{110} \\
+    &\approx
+    0.3727.
+    \end{aligned}
+    $$
+
+    Thus, the next-year accident probability is a weighted average of the accident probabilities for the two driver types, using the **updated probabilities** of belonging to each type after the first-year accident.
+
+    The premium is $\$400$ times this probability:
+
+    $$
+    \begin{aligned}
+    \text{Premium}
+    &=
+    400\left(\frac{41}{110}\right) \\
+    &\approx
+    149.09.
+    \end{aligned}
+    $$
+
+    Therefore,
+
+    $$
+    \boxed{
+    \text{Premium}\approx \$149.09.
+    }
+    $$
+
+    The accident increases the estimated probability that the subscriber is an accident-maker, so the premium is based on the updated accident probability rather than the original population average.
+
+</details>
 
 
+### Continuous variables
 
+A random variable that can take on any value in an interval is called **continuous**.
 
-
-
+The probability distribution for a discrete random variable can always be given by
+assigning a nonnegative probability to each of the possible values the variable may
+assume. In every case, of course, the sum of all the probabilities that we assign must be
+equal to 1. Unfortunately, the probability distribution for a continuous random variable
+cannot be specified in the same way. It is mathematically impossible to assign nonzero
+probabilities to all the points on a line interval while satisfying the requirement that
+the probabilities of the distinct possible values sum to 1. As a result, we must develop
+a different method to describe the probability distribution for a continuous random
+variable.
 
 
 

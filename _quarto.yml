@@ -23,7 +23,7 @@ format:
     css: styles.css
     include-after-body: scroll-bottom.html
 
-  typst:
+  pdf:
     toc: true
     number-sections: true
 
