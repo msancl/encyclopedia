@@ -190,6 +190,21 @@ window.Quarto = {
   <li><a href="#trigonometric-functions" id="toc-trigonometric-functions" class="nav-link" data-scroll-target="#trigonometric-functions"><span class="header-section-number">1.2.8</span> Trigonometric functions</a></li>
   <li><a href="#inverse-trigonometric-functions" id="toc-inverse-trigonometric-functions" class="nav-link" data-scroll-target="#inverse-trigonometric-functions"><span class="header-section-number">1.2.9</span> Inverse trigonometric functions</a></li>
   </ul></li>
+  <li><a href="#sec-integrals" id="toc-sec-integrals" class="nav-link" data-scroll-target="#sec-integrals"><span class="header-section-number">1.3</span> Integrals and primitives</a>
+  <ul>
+  <li><a href="#basic-rules-1" id="toc-basic-rules-1" class="nav-link" data-scroll-target="#basic-rules-1"><span class="header-section-number">1.3.1</span> Basic rules</a></li>
+  <li><a href="#power-functions" id="toc-power-functions" class="nav-link" data-scroll-target="#power-functions"><span class="header-section-number">1.3.2</span> Power functions</a></li>
+  <li><a href="#exponential-functions-1" id="toc-exponential-functions-1" class="nav-link" data-scroll-target="#exponential-functions-1"><span class="header-section-number">1.3.3</span> Exponential functions</a></li>
+  <li><a href="#logarithms-1" id="toc-logarithms-1" class="nav-link" data-scroll-target="#logarithms-1"><span class="header-section-number">1.3.4</span> Logarithms</a></li>
+  <li><a href="#trigonometric-functions-1" id="toc-trigonometric-functions-1" class="nav-link" data-scroll-target="#trigonometric-functions-1"><span class="header-section-number">1.3.5</span> Trigonometric functions</a></li>
+  <li><a href="#inverse-trigonometric-forms" id="toc-inverse-trigonometric-forms" class="nav-link" data-scroll-target="#inverse-trigonometric-forms"><span class="header-section-number">1.3.6</span> Inverse trigonometric forms</a></li>
+  <li><a href="#substitution-rule" id="toc-substitution-rule" class="nav-link" data-scroll-target="#substitution-rule"><span class="header-section-number">1.3.7</span> Substitution rule</a></li>
+  <li><a href="#integration-by-parts" id="toc-integration-by-parts" class="nav-link" data-scroll-target="#integration-by-parts"><span class="header-section-number">1.3.8</span> Integration by parts</a></li>
+  <li><a href="#definite-integrals" id="toc-definite-integrals" class="nav-link" data-scroll-target="#definite-integrals"><span class="header-section-number">1.3.9</span> Definite integrals</a></li>
+  <li><a href="#substitution-in-definite-integrals" id="toc-substitution-in-definite-integrals" class="nav-link" data-scroll-target="#substitution-in-definite-integrals"><span class="header-section-number">1.3.10</span> Substitution in definite integrals</a></li>
+  <li><a href="#integration-by-parts-for-definite-integrals" id="toc-integration-by-parts-for-definite-integrals" class="nav-link" data-scroll-target="#integration-by-parts-for-definite-integrals"><span class="header-section-number">1.3.11</span> Integration by parts for definite integrals</a></li>
+  <li><a href="#improper-integrals" id="toc-improper-integrals" class="nav-link" data-scroll-target="#improper-integrals"><span class="header-section-number">1.3.12</span> Improper integrals</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -494,6 +509,506 @@ a^{f(x)}\ln(a)\,f'(x).
 =
 \frac{f'(x)}
 {1+[f(x)]^2}.
+\]</span></p>
+</section>
+</section>
+<section id="sec-integrals" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="sec-integrals"><span class="header-section-number">1.3</span> Integrals and primitives</h2>
+<p>A function <span class="math inline">\(F(x)\)</span> is a <strong>primitive</strong> or <strong>antiderivative</strong> of <span class="math inline">\(f(x)\)</span> if</p>
+<p><span class="math display">\[
+F'(x)=f(x).
+\]</span></p>
+<p>The indefinite integral represents the family of all primitives of <span class="math inline">\(f(x)\)</span>:</p>
+<p><span class="math display">\[
+\int f(x)\,dx
+=
+F(x)+C,
+\]</span></p>
+<p>where <span class="math inline">\(C\)</span> is an arbitrary constant.</p>
+<section id="basic-rules-1" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="basic-rules-1"><span class="header-section-number">1.3.1</span> Basic rules</h3>
+<p>For constants <span class="math inline">\(a\)</span>, <span class="math inline">\(c\)</span> and integrable functions <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(g(x)\)</span>,</p>
+<p><span class="math display">\[
+\int c\,dx
+=
+cx+C,
+\]</span></p>
+<p><span class="math display">\[
+\int cf(x)\,dx
+=
+c\int f(x)\,dx,
+\]</span></p>
+<p><span class="math display">\[
+\int [f(x)+g(x)]\,dx
+=
+\int f(x)\,dx
++
+\int g(x)\,dx,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\int [f(x)-g(x)]\,dx
+=
+\int f(x)\,dx
+-
+\int g(x)\,dx.
+\]</span></p>
+</section>
+<section id="power-functions" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="power-functions"><span class="header-section-number">1.3.2</span> Power functions</h3>
+<p>For <span class="math inline">\(a\neq -1\)</span>,</p>
+<p><span class="math display">\[
+\int x^a\,dx
+=
+\frac{x^{a+1}}{a+1}+C.
+\]</span></p>
+<p>More generally,</p>
+<p><span class="math display">\[
+\boxed{
+\int [f(x)]^a f'(x)\,dx
+=
+\frac{[f(x)]^{a+1}}{a+1}+C
+}
+\]</span></p>
+<p>for <span class="math inline">\(a\neq -1\)</span>.</p>
+<p>In particular,</p>
+<p><span class="math display">\[
+\int f(x)f'(x)\,dx
+=
+\frac{[f(x)]^2}{2}+C.
+\]</span></p>
+<p>For <span class="math inline">\(a=-1\)</span>,</p>
+<p><span class="math display">\[
+\int \frac{1}{x}\,dx
+=
+\ln|x|+C.
+\]</span></p>
+<p>More generally,</p>
+<p><span class="math display">\[
+\boxed{
+\int \frac{f'(x)}{f(x)}\,dx
+=
+\ln|f(x)|+C.
+}
+\]</span></p>
+</section>
+<section id="exponential-functions-1" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="exponential-functions-1"><span class="header-section-number">1.3.3</span> Exponential functions</h3>
+<p><span class="math display">\[
+\int e^x\,dx
+=
+e^x+C.
+\]</span></p>
+<p>More generally,</p>
+<p><span class="math display">\[
+\boxed{
+\int e^{f(x)}f'(x)\,dx
+=
+e^{f(x)}+C.
+}
+\]</span></p>
+<p>For example,</p>
+<p><span class="math display">\[
+\int e^{3x+2}\,dx
+=
+\frac{1}{3}e^{3x+2}+C.
+\]</span></p>
+<p>For a constant <span class="math inline">\(a&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\int a^x\,dx
+=
+\frac{a^x}{\ln(a)}+C.
+\]</span></p>
+<p>More generally,</p>
+<p><span class="math display">\[
+\boxed{
+\int a^{f(x)}f'(x)\,dx
+=
+\frac{a^{f(x)}}{\ln(a)}+C.
+}
+\]</span></p>
+<p>A particularly useful form is</p>
+<p><span class="math display">\[
+\int e^{-\lambda x}\,dx
+=
+-\frac{1}{\lambda}e^{-\lambda x}+C,
+\qquad
+\lambda\neq0.
+\]</span></p>
+</section>
+<section id="logarithms-1" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="logarithms-1"><span class="header-section-number">1.3.4</span> Logarithms</h3>
+<p><span class="math display">\[
+\int \ln x\,dx
+=
+x\ln x-x+C,
+\qquad
+x&gt;0.
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+\boxed{
+\int \frac{f'(x)}{f(x)}\,dx
+=
+\ln|f(x)|+C.
+}
+\]</span></p>
+<p>For example,</p>
+<p><span class="math display">\[
+\int \frac{2x}{x^2+1}\,dx
+=
+\ln(x^2+1)+C.
+\]</span></p>
+</section>
+<section id="trigonometric-functions-1" class="level3" data-number="1.3.5">
+<h3 data-number="1.3.5" class="anchored" data-anchor-id="trigonometric-functions-1"><span class="header-section-number">1.3.5</span> Trigonometric functions</h3>
+<p><span class="math display">\[
+\int \sin x\,dx
+=
+-\cos x+C,
+\]</span></p>
+<p><span class="math display">\[
+\int \cos x\,dx
+=
+\sin x+C,
+\]</span></p>
+<p><span class="math display">\[
+\int \sec^2 x\,dx
+=
+\tan x+C.
+\]</span></p>
+<p>With an inner function <span class="math inline">\(f(x)\)</span>,</p>
+<p><span class="math display">\[
+\boxed{
+\int \sin[f(x)]f'(x)\,dx
+=
+-\cos[f(x)]+C,
+}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\int \cos[f(x)]f'(x)\,dx
+=
+\sin[f(x)]+C,
+}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\boxed{
+\int \sec^2[f(x)]f'(x)\,dx
+=
+\tan[f(x)]+C.
+}
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+\int \csc^2[f(x)]f'(x)\,dx
+=
+-\cot[f(x)]+C,
+\]</span></p>
+<p><span class="math display">\[
+\int \sec[f(x)]\tan[f(x)]f'(x)\,dx
+=
+\sec[f(x)]+C,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\int \csc[f(x)]\cot[f(x)]f'(x)\,dx
+=
+-\csc[f(x)]+C.
+\]</span></p>
+</section>
+<section id="inverse-trigonometric-forms" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="inverse-trigonometric-forms"><span class="header-section-number">1.3.6</span> Inverse trigonometric forms</h3>
+<p><span class="math display">\[
+\int \frac{1}{1+x^2}\,dx
+=
+\arctan x+C,
+\]</span></p>
+<p>and more generally,</p>
+<p><span class="math display">\[
+\boxed{
+\int
+\frac{f'(x)}
+{1+[f(x)]^2}
+\,dx
+=
+\arctan[f(x)]+C.
+}
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+\int \frac{1}{\sqrt{1-x^2}}\,dx
+=
+\arcsin x+C,
+\]</span></p>
+<p>and more generally,</p>
+<p><span class="math display">\[
+\boxed{
+\int
+\frac{f'(x)}
+{\sqrt{1-[f(x)]^2}}
+\,dx
+=
+\arcsin[f(x)]+C.
+}
+\]</span></p>
+</section>
+<section id="substitution-rule" class="level3" data-number="1.3.7">
+<h3 data-number="1.3.7" class="anchored" data-anchor-id="substitution-rule"><span class="header-section-number">1.3.7</span> Substitution rule</h3>
+<p>Substitution is the integral counterpart of the chain rule.</p>
+<p>If</p>
+<p><span class="math display">\[
+u=f(x),
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+du=f'(x)\,dx.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\int g(f(x))f'(x)\,dx
+=
+\int g(u)\,du.
+}
+\]</span></p>
+<p>If <span class="math inline">\(G'(u)=g(u)\)</span>, then</p>
+<p><span class="math display">\[
+\boxed{
+\int g(f(x))f'(x)\,dx
+=
+G(f(x))+C.
+}
+\]</span></p>
+<details class="frame">
+<summary>
+Example
+</summary>
+<p>Consider</p>
+<p><span class="math display">\[
+\int 2x e^{x^2}\,dx.
+\]</span></p>
+<p>Let</p>
+<p><span class="math display">\[
+u=x^2.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+du=2x\,dx.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int 2x e^{x^2}\,dx
+&amp;=
+\int e^u\,du \\
+&amp;=
+e^u+C \\
+&amp;=
+e^{x^2}+C.
+\end{aligned}
+\]</span></p>
+</details>
+</section>
+<section id="integration-by-parts" class="level3" data-number="1.3.8">
+<h3 data-number="1.3.8" class="anchored" data-anchor-id="integration-by-parts"><span class="header-section-number">1.3.8</span> Integration by parts</h3>
+<p>Integration by parts is the integral counterpart of the product rule:</p>
+<p><span class="math display">\[
+\boxed{
+\int u\,dv
+=
+uv-\int v\,du.
+}
+\]</span></p>
+<p>If</p>
+<p><span class="math display">\[
+u=f(x)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+dv=g'(x)\,dx,
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+du=f'(x)\,dx
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+v=g(x).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\int f(x)g'(x)\,dx
+=
+f(x)g(x)
+-
+\int f'(x)g(x)\,dx.
+}
+\]</span></p>
+<details class="frame">
+<summary>
+Example
+</summary>
+<p>Consider</p>
+<p><span class="math display">\[
+\int xe^x\,dx.
+\]</span></p>
+<p>Take</p>
+<p><span class="math display">\[
+u=x,
+\qquad
+dv=e^x\,dx.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+du=dx,
+\qquad
+v=e^x.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int xe^x\,dx
+&amp;=
+xe^x-\int e^x\,dx \\
+&amp;=
+xe^x-e^x+C \\
+&amp;=
+e^x(x-1)+C.
+\end{aligned}
+\]</span></p>
+</details>
+</section>
+<section id="definite-integrals" class="level3" data-number="1.3.9">
+<h3 data-number="1.3.9" class="anchored" data-anchor-id="definite-integrals"><span class="header-section-number">1.3.9</span> Definite integrals</h3>
+<p>If</p>
+<p><span class="math display">\[
+F'(x)=f(x),
+\]</span></p>
+<p>then the Fundamental Theorem of Calculus gives</p>
+<p><span class="math display">\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+F(b)-F(a).
+}
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\int_a^b f(x)\,dx
+=
+\left[
+F(x)
+\right]_a^b.
+\]</span></p>
+<p>The basic properties are</p>
+<p><span class="math display">\[
+\int_a^b f(x)\,dx
+=
+-\int_b^a f(x)\,dx,
+\]</span></p>
+<p><span class="math display">\[
+\int_a^a f(x)\,dx
+=
+0,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\int_a^b f(x)\,dx
++
+\int_b^c f(x)\,dx
+=
+\int_a^c f(x)\,dx.
+\]</span></p>
+</section>
+<section id="substitution-in-definite-integrals" class="level3" data-number="1.3.10">
+<h3 data-number="1.3.10" class="anchored" data-anchor-id="substitution-in-definite-integrals"><span class="header-section-number">1.3.10</span> Substitution in definite integrals</h3>
+<p>If</p>
+<p><span class="math display">\[
+u=f(x),
+\]</span></p>
+<p>then the limits must also be transformed:</p>
+<p><span class="math display">\[
+x=a
+\Rightarrow
+u=f(a),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+x=b
+\Rightarrow
+u=f(b).
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\boxed{
+\int_a^b g(f(x))f'(x)\,dx
+=
+\int_{f(a)}^{f(b)}g(u)\,du.
+}
+\]</span></p>
+</section>
+<section id="integration-by-parts-for-definite-integrals" class="level3" data-number="1.3.11">
+<h3 data-number="1.3.11" class="anchored" data-anchor-id="integration-by-parts-for-definite-integrals"><span class="header-section-number">1.3.11</span> Integration by parts for definite integrals</h3>
+<p><span class="math display">\[
+\boxed{
+\int_a^b f(x)g'(x)\,dx
+=
+\left[
+f(x)g(x)
+\right]_a^b
+-
+\int_a^b f'(x)g(x)\,dx.
+}
+\]</span></p>
+</section>
+<section id="improper-integrals" class="level3" data-number="1.3.12">
+<h3 data-number="1.3.12" class="anchored" data-anchor-id="improper-integrals"><span class="header-section-number">1.3.12</span> Improper integrals</h3>
+<p>An integral over an infinite interval is defined using a limit:</p>
+<p><span class="math display">\[
+\int_a^\infty f(x)\,dx
+=
+\lim_{b\to\infty}
+\int_a^b f(x)\,dx.
+\]</span></p>
+<p>Similarly,</p>
+<p><span class="math display">\[
+\int_{-\infty}^b f(x)\,dx
+=
+\lim_{a\to-\infty}
+\int_a^b f(x)\,dx.
+\]</span></p>
+<p>For the entire real line,</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}f(x)\,dx
+=
+\int_{-\infty}^{c}f(x)\,dx
++
+\int_c^{\infty}f(x)\,dx,
+\]</span></p>
+<p>provided both integrals converge.</p>
+<p>For example, if <span class="math inline">\(\lambda&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_0^\infty e^{-\lambda x}\,dx
+&amp;=
+\lim_{b\to\infty}
+\left[
+-\frac{1}{\lambda}e^{-\lambda x}
+\right]_0^b \\
+&amp;=
+\frac{1}{\lambda}.
+\end{aligned}
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\boxed{
+\int_0^\infty \lambda e^{-\lambda x}\,dx
+=
+1.
+}
 \]</span></p>
 
 

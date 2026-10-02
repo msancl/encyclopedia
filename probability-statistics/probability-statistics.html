@@ -244,7 +244,7 @@ window.Quarto = {
 
 
 <p>This chapter is primarily based on <span class="citation" data-cites="wackerly2008">Wackerly et al. (<a href="../references.html#ref-wackerly2008" role="doc-biblioref">2008</a>)</span>.</p>
-<!-- preview-trigger: 1790942850667 -->
+<!-- preview-trigger: 1790946535221 -->
 <section id="probability" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">2.1</span> Probability</h2>
 <section id="foundations" class="level3" data-number="2.1.1">
@@ -2732,6 +2732,49 @@ P(\text{accident next year}\mid A)P(A\mid C) \\
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="continuous-variables"><span class="header-section-number">2.2.2</span> Continuous variables</h3>
 <p>A random variable that can take on any value in an interval is called <strong>continuous</strong>.</p>
 <p>The probability distribution for a discrete random variable can always be given by assigning a nonnegative probability to each of the possible values the variable may assume. In every case, of course, the sum of all the probabilities that we assign must be equal to 1. Unfortunately, the probability distribution for a continuous random variable cannot be specified in the same way. It is mathematically impossible to assign nonzero probabilities to all the points on a line interval while satisfying the requirement that the probabilities of the distinct possible values sum to 1. As a result, we must develop a different method to describe the probability distribution for a continuous random variable.</p>
+<p>Before we can state a formal definition for a continuous rv, we must define the distribution fuction (or <em>cumulative</em> distribution function, cdf) associated with a random variable.</p>
+<p>Let <span class="math inline">\(Y\)</span> denote any random variable. The <strong>cdf</strong> of <span class="math inline">\(Y\)</span>, denoted by <span class="math inline">\(F(y)\)</span>, is such that <span class="math inline">\(F(y) = P(Y \leq y)\)</span> for <span class="math inline">\(-\infty &lt; y &lt; \infty\)</span>.</p>
+<p>The nature of the cdf associated with a rv determines whether the variable is continuous or discrete.</p>
+<p>Distribution functions for discrete rv are always step functions because the cdf increases only at the finite or countable number of points with positive probabilities.</p>
+<p><strong>Properties</strong> of a cdf:</p>
+<p>If <span class="math inline">\(F(y)\)</span> is a distribution function, then</p>
+<ol type="a">
+<li><p><span class="math inline">\(F(-\infty) \equiv \lim_{y \rightarrow -\infty} F(y) = 0.\)</span></p></li>
+<li><p><span class="math inline">\(F(\infty) \equiv lim_{y \rightarrow \infty} F(y) = 1.\)</span></p></li>
+<li><p><span class="math inline">\(F(y)\)</span> is a nondecreasing function of <span class="math inline">\(y\)</span>. If <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are any values such that <span class="math inline">\(y_1 &lt; y_2\)</span>, then <span class="math inline">\(F(y_1) \leq F(y_2).\)</span></p></li>
+</ol>
+<p>A random variable <span class="math inline">\(Y\)</span> with cdf <span class="math inline">\(F(y)\)</span> is said to be <strong>continuous</strong> if <span class="math inline">\(F(y)\)</span> is continuous, for <span class="math inline">\(- \infty &lt; y &lt; \infty\)</span>.</p>
+<div style="text-align: center;">
+<p><img src="images/cdf.png" class="img-fluid" style="width:50.0%"></p>
+</div>
+<p>If <span class="math inline">\(Y\)</span> is a continuous rv, then for any real number <span class="math inline">\(y\)</span>,</p>
+<p><span class="math display">\[ P(Y=y) = 0. \]</span></p>
+<p>The derivative of <span class="math inline">\(F(y)\)</span> is another function of prime importance in probability theory and statistics.</p>
+<p>Let <span class="math inline">\(F(y)\)</span> be the distribution function for a continuous rv <span class="math inline">\(Y\)</span>. Then <span class="math inline">\(f(y)\)</span>, given by</p>
+<p><span class="math display">\[ f(y) = \frac{dF(y)}{dy} = F'(y) \]</span> wherever the derivative exists, is called the <strong>probability density function</strong>, pdf, for the random variable <span class="math inline">\(Y\)</span>.</p>
+<p>It follows that <span class="math inline">\(F(y)\)</span> can be written as</p>
+<p><span class="math display">\[ F(y) = \int_{-\infty}^y f(t) dt, \]</span> where <span class="math inline">\(f(\cdot)\)</span> is the pdf and <span class="math inline">\(t\)</span> is used as the variable of integration.</p>
+<p>The relationship between the cumulative and density functions is shown here:</p>
+<div style="text-align: center;">
+<p><img src="images/relationship.png" class="img-fluid" style="width:50.0%"></p>
+</div>
+<p>The density is a theoretical model for the frequency distribution (histogram) of a population of measurements.</p>
+<p><strong>Properties</strong> of a density function:</p>
+<p>If <span class="math inline">\(f(y)\)</span> is a density function for a continuous rv, then</p>
+<ol type="a">
+<li><p><span class="math inline">\(f(y) \geq 0\)</span> for all <span class="math inline">\(y, \infty &lt; y &lt; \infty\)</span>.</p></li>
+<li><p><span class="math inline">\(\int_{-\infty}^{\infty} f(y) dy = 1.\)</span></p></li>
+</ol>
+<p><span class="math inline">\(F(y_0)\)</span> gives the probability that <span class="math inline">\(Y \leq y_0\)</span>. It is often of interest to determine the value, <span class="math inline">\(y\)</span>, of a rv <span class="math inline">\(Y\)</span> that is such that <span class="math inline">\(P(Y \leq y)\)</span> equals or exceeds some specified value.</p>
+<p>Let <span class="math inline">\(Y\)</span> denote any rv. If <span class="math inline">\(0 &lt; p &lt; 1\)</span>, the <span class="math inline">\(p\)</span>th <strong>quantile</strong> of <span class="math inline">\(Y\)</span>, denoted by <span class="math inline">\(\phi_p\)</span>, is the smallest value such that <span class="math inline">\(P(Y \leq \phi_p) = F(\phi_p) \geq p\)</span>. If <span class="math inline">\(Y\)</span> is continuous, <span class="math inline">\(\phi_p\)</span> is the smallest value such that <span class="math inline">\(F(\phi_p) = P(Y \leq \phi_p) = p.\)</span></p>
+<p>An important special case is <span class="math inline">\(p=1/2\)</span> and <span class="math inline">\(\phi_{0.5}\)</span> is the <strong>median</strong> of the random variable <span class="math inline">\(Y\)</span>.</p>
+<p>If <span class="math inline">\(Y\)</span> has density function <span class="math inline">\(f(y)\)</span> and <span class="math inline">\(a &lt; b\)</span>, then the probability that <span class="math inline">\(Y\)</span> falls in the interval <span class="math inline">\([a, b]\)</span> is</p>
+<p><span class="math display">\[ P(a \leq Y \leq b) = \int_a^b f(y) dy. \]</span></p>
+<div style="text-align: center;">
+<p><img src="images/betweenab.png" class="img-fluid" style="width:50.0%"></p>
+</div>
+<p>If <span class="math inline">\(Y\)</span> is a continuous rv and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants such that <span class="math inline">\(a&lt;b\)</span>, then <span class="math inline">\(P(Y=a) = 0\)</span> and <span class="math inline">\(P(Y=b) = 0\)</span>:</p>
+<p><span class="math display">\[ P(a &lt; Y &lt; b) = P(a \leq Y \leq b) = P(a &lt; Y \leq b) = P(a \leq Y &lt; b) = \int_a^b f(y) dy. \]</span></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
